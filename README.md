@@ -7,7 +7,7 @@
 
 - 👯 I’m looking to collaborate on **anything new and unique projects.**
 
-- 💬 Ask me about **React, Python**
+- 💬 Ask me about **Python and Data Structures**
 
 - 📫 How to reach me **prabhupugal01@gmail.com**
 
