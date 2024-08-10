@@ -11,7 +11,7 @@
 
 - 📫 How to reach me **prabhupugal01@gmail.com**
 
-- ⚡ Fun fact **Like usual programmers I do gaming and sometimes I just Netflix and chill!**
+- ⚡ Fun fact about me:**Like usual programmers I do gaming and sometimes I just Netflix and chill!**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
