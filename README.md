@@ -1,9 +1,9 @@
 <h1 align="center">Hi 👋, I'm Prabhu</h1>
 <h3 align="center">An self-motivated, aspiring Software Engineer!</h3>
 
-- 🔭 I’m currently working on [Discord Music Bot](https://github.com/PrabhuPugal/Discord-Music-Bot)
+- 🔭 I’m currently working on [Virtual Race Engineer](https://github.com/PrabhuPugal/F1-Data)
 
-- 🌱 I’m currently learning **In depth-data structures**
+- 🌱 I’m currently learning **Deep Learning Models and CNN**
 
 - 👯 I’m looking to collaborate on **anything new and unique projects.**
 
@@ -11,7 +11,7 @@
 
 - 📫 How to reach me **prabhupugal01@gmail.com**
 
-- ⚡ Fun fact **Like usual programmers I do gaming and sometimes just Netflix and chill!**
+- ⚡ Fun fact **Like usual programmers I do gaming and sometimes I just Netflix and chill!**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
