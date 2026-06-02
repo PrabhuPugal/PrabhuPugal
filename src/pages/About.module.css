@@ -1,0 +1,91 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.bio {
+  font-family: var(--font-body);
+}
+
+.bio p {
+  color: var(--text-muted);
+  line-height: 1.85;
+}
+
+.bio strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.skills {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.skillsTitle {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skillsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.skillGroup {}
+
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.groupIcon {
+  color: var(--text-muted);
+}
+
+.groupName {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  background: var(--bg);
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.badge:hover {
+  border-color: var(--accent-2);
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

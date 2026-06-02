@@ -1,0 +1,47 @@
+export const experiences = [
+  {
+    id: 1,
+    role: "Graduate Research Assistant",
+    company: "University of Southern California",
+    location: "Los Angeles, CA",
+    period: "Feb 2026 – Present",
+    current: true,
+    bullets: [
+      "Extending CogRouter, an ACT-R-inspired cognitive routing framework, to generalize across agentic and mathematical reasoning domains",
+      "Designed and implemented a training-free online token ledger that monitors per-episode budget consumption and dynamically re-plans cognitive depth allocation mid-episode",
+      "Built a confidence-triggered verification gate for math reasoning, enforcing self-refinement when answer confidence falls below adaptive thresholds on MATH500, AIME24, and GSM8K",
+      "Developing a cost-conditioned cognitive router retrained via GRPO with per-tool API cost signals to reduce token expenditure on expensive tool calls in web and agentic environments",
+      "Evaluating framework generality across six benchmarks spanning two task domains: agentic (WebArena, GAIA, AssistantBench) and mathematical reasoning (MATH500, AIME24, GSM8K)",
+    ],
+  },
+  {
+    id: 2,
+    role: "Data Analyst Intern",
+    company: "Ernst & Young",
+    location: "Tamil Nadu, India",
+    period: "Dec 2024 – May 2025",
+    current: false,
+    bullets: [
+      "Built Python and SQL pipelines to ingest, clean, and analyze large enterprise datasets",
+      "Developed analytics dashboards (Power BI) to monitor operational metrics and trends",
+      "Implemented data validation and monitoring to ensure reliability of reporting workflows",
+      "Collaborated with cross-functional teams to troubleshoot data issues and optimize queries",
+      "Automated data workflows using CI/CD pipelines for validation and reproducible reporting",
+      "Documented data models, query logic, and reporting pipelines for maintainable analytics systems",
+    ],
+  },
+  {
+    id: 3,
+    role: "Software Developer Intern",
+    company: "Ernst & Young",
+    location: "Tamil Nadu, India",
+    period: "Jun 2023 – Dec 2023",
+    current: false,
+    bullets: [
+      "Developed Python-based backend services to process and extract structured insights from large document datasets",
+      "Designed and deployed REST APIs using Docker containers with CI/CD pipelines for automated testing and integration",
+      "Optimized model inference pipelines and implemented logging and monitoring for reliability",
+      "Worked in collaborative engineering workflows using Git version control and code review practices",
+    ],
+  },
+];

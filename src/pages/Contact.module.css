@@ -1,0 +1,143 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.info {}
+
+.intro {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.link:last-child {
+  border-bottom: none;
+}
+
+.link:hover {
+  color: var(--text);
+}
+
+.resumeWrap {
+  padding-top: 1rem;
+}
+
+.resumeBtn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-2);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  transition: all var(--transition);
+}
+
+.resumeBtn:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+/* Form */
+.form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.input,
+.textarea {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.9rem;
+  outline: none;
+  transition: border-color var(--transition);
+  resize: none;
+  width: 100%;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-faint);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--text-muted);
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  padding: 0.7rem 1.4rem;
+  background: var(--text);
+  color: var(--bg);
+  border: 1px solid var(--text);
+  border-radius: var(--radius);
+  align-self: flex-start;
+  transition: all var(--transition);
+}
+
+.submit:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

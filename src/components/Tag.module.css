@@ -1,0 +1,18 @@
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  background: var(--surface-2);
+  white-space: nowrap;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.tag:hover {
+  border-color: var(--accent-2);
+  color: var(--text);
+}
