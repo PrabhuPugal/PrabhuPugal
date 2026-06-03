@@ -109,9 +109,7 @@ export default function ChatBubble() {
           <div className={styles.header}>
             <span className={styles.title}>// ask pb</span>
             <div className={styles.headerRight}>
-              <span className={styles.model}>
-                {usingApi ? "pb-mini · groq" : "pb-mini · local"}
-              </span>
+              <span className={styles.model}>pb-mini</span>
               <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="Close chat">
                 <X size={13} />
               </button>
