@@ -3,13 +3,14 @@ import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
 import CustomCursor from "./components/CustomCursor";
 import ChatBubble from "./components/ChatBubble";
+import ThemeToggle from "./components/ThemeToggle";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
 import Research from "./pages/Research";
 import Projects from "./pages/Projects";
 import Education from "./pages/Education";
-import Travel from "./pages/Travel";
+import Photos from "./pages/Photos";
 import Contact from "./pages/Contact";
 import "./styles/global.css";
 
@@ -20,7 +21,7 @@ export const sections = [
   { id: "research",   path: "/research",   label: "Research",   component: Research },
   { id: "projects",   path: "/projects",   label: "Projects",   component: Projects },
   { id: "education",  path: "/education",  label: "Education",  component: Education },
-  { id: "travel",     path: "/travel",     label: "Travel",     component: Travel },
+  { id: "photos",     path: "/photos",     label: "Photos",     component: Photos },
   { id: "contact",    path: "/contact",    label: "Contact",    component: Contact },
 ];
 
@@ -35,6 +36,7 @@ function AppInner() {
   return (
     <>
       <CustomCursor />
+      <ThemeToggle />
       <ChatBubble />
       <div className="appShell">
         <Navbar sections={sections} onSelectSection={handleSelectSection} />

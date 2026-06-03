@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Sun, Moon, Menu, X } from "lucide-react";
-import { useTheme } from "../context/useTheme";
+import { Menu, X } from "lucide-react";
 import styles from "./Navbar.module.css";
 
 export default function Navbar({ sections, onSelectSection }) {
-  const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -39,9 +37,6 @@ export default function Navbar({ sections, onSelectSection }) {
         </ul>
 
         <div className={styles.actions}>
-          <button className={styles.themeBtn} onClick={toggleTheme} aria-label="Toggle theme">
-            {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
-          </button>
           <button
             className={styles.menuBtn}
             onClick={() => setMenuOpen((o) => !o)}

@@ -12,7 +12,7 @@
 
 /* Chat panel */
 .panel {
-  width: 320px;
+  width: 380px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -75,7 +75,7 @@
   flex-direction: column;
   gap: 0.6rem;
   padding: 0.85rem 1rem;
-  max-height: 280px;
+  max-height: 360px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }

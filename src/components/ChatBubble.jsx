@@ -13,7 +13,7 @@ const pbReplies = [
   { keys: ["llm", "gpt", "claude", "ai", "model", "transformer", "bert"],
     reply: "LLMs are just vibes with matrix multiplication. Very expensive, surprisingly effective vibes." },
   { keys: ["travel", "food", "eat", "trip", "place"],
-    reply: "Context window is full of travel memories. Navigate to /travel for the full rollout." },
+    reply: "Context window is full of travel memories. Navigate to /photos for the full rollout." },
   { keys: ["sleep", "tired", "rest", "nap", "bed"],
     reply: "sleep() not implemented. See also: coffee.py, deadlines.json, advisor_emails.txt." },
   { keys: ["loss", "train", "gradient", "epoch", "overfit", "converge"],
@@ -47,10 +47,12 @@ function toApiMessages(messages) {
 }
 
 async function fetchReply(conversationHistory) {
+  // Only send last 6 messages to keep token usage low
+  const trimmed = conversationHistory.slice(-6);
   const res = await fetch("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages: toApiMessages(conversationHistory) }),
+    body: JSON.stringify({ messages: toApiMessages(trimmed) }),
   });
   if (!res.ok) throw new Error(`API ${res.status}`);
   const data = await res.json();

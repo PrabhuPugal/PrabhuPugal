@@ -14,7 +14,7 @@ export default function Contact() {
     const subject = encodeURIComponent(`Message from ${name}`);
     const body = encodeURIComponent(`${message}\n\n- ${name} (${email})`);
     window.location.href =
-      `mailto:${contactInfo.personalEmail},${contactInfo.universityEmail}?subject=${subject}&body=${body}`;
+      `mailto:${contactInfo.universityEmail}?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (e) => {
@@ -40,10 +40,6 @@ export default function Contact() {
               </p>
 
               <div className={styles.links}>
-                <a href={`mailto:${contactInfo.personalEmail}`} className={styles.link}>
-                  <Mail size={18} className={styles.personalEmailIcon} />
-                  <span>Personal - {contactInfo.personalEmail}</span>
-                </a>
                 <a href={`mailto:${contactInfo.universityEmail}`} className={styles.link}>
                   <Mail size={18} className={styles.universityEmailIcon} />
                   <span>USC - {contactInfo.universityEmail}</span>
@@ -55,7 +51,7 @@ export default function Contact() {
                   className={styles.link}
                 >
                   <LinkedinIcon size={18} className={styles.linkedinIcon} />
-                  <span>LinkedIn - /in/prabhupugalenthi</span>
+                  <span>LinkedIn - @prabhupugalenthi</span>
                 </a>
                 <a
                   href={contactInfo.github}

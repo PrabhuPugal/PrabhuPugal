@@ -1,0 +1,93 @@
+.wrap {
+  position: fixed;
+  top: 1rem;
+  right: 1.25rem;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+/* [bubble →][Patrick]
+               [ btn ]          */
+.memeWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: popIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.5) translateY(6px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0);   }
+}
+
+/* Speech bubble — tail points RIGHT toward Patrick */
+.bubble {
+  position: relative;
+  background: #fff;
+  color: #111;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0.38rem 0.65rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  line-height: 1;
+}
+
+.bubble::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 5px 0 5px 7px;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff;
+}
+
+/* Patrick */
+.meme {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 8px;
+  pointer-events: none;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Toggle button */
+.btn {
+  width: 32px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+}
+
+.btn:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+/* In light mode — subtly red-tinted to hint at the meme energy */
+.btnLight {
+  border-color: #e88;
+  color: #c44;
+}
+
+.btnLight:hover {
+  background: #fee;
+  border-color: #c44;
+  color: #c44;
+}
