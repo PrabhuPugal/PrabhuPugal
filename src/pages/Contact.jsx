@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Mail, Send } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "../components/SocialIcons";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "../components/SocialIcons";
 import SectionReveal from "../components/SectionReveal";
+import { contactInfo } from "../data/contact";
 import styles from "./Contact.module.css";
 
 export default function Contact() {
@@ -11,8 +12,9 @@ export default function Contact() {
     e.preventDefault();
     const { name, email, message } = form;
     const subject = encodeURIComponent(`Message from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:prabhupugal01@gmail.com?subject=${subject}&body=${body}`;
+    const body = encodeURIComponent(`${message}\n\n- ${name} (${email})`);
+    window.location.href =
+      `mailto:${contactInfo.personalEmail},${contactInfo.universityEmail}?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (e) => {
@@ -20,7 +22,7 @@ export default function Contact() {
   };
 
   return (
-    <main className="section">
+    <section className="section">
       <div className="container">
         <SectionReveal>
           <div className="section-header">
@@ -33,32 +35,45 @@ export default function Contact() {
           <SectionReveal delay={0.1}>
             <div className={styles.info}>
               <p className={styles.intro}>
-                I'm always open to interesting conversations — whether it's about
+                I'm always open to interesting conversations - whether it's about
                 research, AI systems, new ideas, or opportunities. Drop me a message.
               </p>
 
               <div className={styles.links}>
-                <a href="mailto:prabhupugal01@gmail.com" className={styles.link}>
-                  <Mail size={18} />
-                  <span>prabhupugal01@gmail.com</span>
+                <a href={`mailto:${contactInfo.personalEmail}`} className={styles.link}>
+                  <Mail size={18} className={styles.personalEmailIcon} />
+                  <span>Personal - {contactInfo.personalEmail}</span>
+                </a>
+                <a href={`mailto:${contactInfo.universityEmail}`} className={styles.link}>
+                  <Mail size={18} className={styles.universityEmailIcon} />
+                  <span>USC - {contactInfo.universityEmail}</span>
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href={contactInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.link}
                 >
-                  <LinkedinIcon size={18} />
-                  <span>LinkedIn</span>
+                  <LinkedinIcon size={18} className={styles.linkedinIcon} />
+                  <span>LinkedIn - /in/prabhupugalenthi</span>
                 </a>
                 <a
-                  href="https://github.com"
+                  href={contactInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.link}
                 >
-                  <GithubIcon size={18} />
-                  <span>GitHub</span>
+                  <GithubIcon size={18} className={styles.githubIcon} />
+                  <span>GitHub - @PrabhuPugal</span>
+                </a>
+                <a
+                  href={contactInfo.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  <InstagramIcon size={18} className={styles.instagramIcon} />
+                  <span>Instagram - @pirabiiii</span>
                 </a>
               </div>
 
@@ -68,7 +83,7 @@ export default function Contact() {
                   download
                   className={styles.resumeBtn}
                 >
-                  Download Resume ↓
+                  Download Resume {"->"}
                 </a>
               </div>
             </div>
@@ -123,6 +138,6 @@ export default function Contact() {
           </SectionReveal>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

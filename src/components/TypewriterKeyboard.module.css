@@ -1,0 +1,172 @@
+/* ── Keyboard — fixed at bottom of viewport ─────────────── */
+.keyboard {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 1rem 14px;
+  background: linear-gradient(0deg, #040404, #0E0E0E);
+  border-top: 2px solid var(--machine-border);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.8);
+}
+
+.row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.rowOffset {
+  margin-left: 18px;
+}
+
+/* Base key appearance */
+.key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 27px;
+  padding: 0 4px;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--key-bg) 95%, white 5%),
+      var(--key-bg-2)
+    );
+  border: 1px solid var(--key-border);
+  border-bottom: 3px solid var(--key-stem);
+  border-radius: 3px;
+  color: var(--key-text);
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  user-select: none;
+  cursor: default;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* Clickable nav keys */
+.navKey {
+  cursor: pointer;
+  height: 30px;
+  min-width: 42px;
+  padding: 0 8px;
+  border: none;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--key-bg) 95%, white 5%),
+      var(--key-bg-2)
+    );
+  border: 1px solid var(--key-border);
+  border-bottom: 3px solid var(--key-stem);
+  border-radius: 3px;
+  transition:
+    color 0.12s ease,
+    transform 0.1s ease,
+    border-bottom-width 0.1s ease,
+    background 0.15s ease,
+    box-shadow 0.12s ease;
+}
+
+.navKey:hover {
+  color: #C4B09A;
+  transform: translateY(-2px);
+  box-shadow:
+    0 7px 16px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.navKey:active {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.navKeyActive {
+  background: linear-gradient(180deg, #2A2A2A, #1A1A1A);
+  border-color: #383838;
+  border-bottom-color: #060606;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.navKeyActive .navKeyLabel {
+  color: var(--key-active);
+}
+
+.navKeyLabel {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: var(--key-text);
+  transition: color 0.12s ease;
+}
+
+/* Space bar */
+.spaceRow {
+  margin-top: 2px;
+}
+
+.spaceBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 20px;
+  background:
+    linear-gradient(180deg, var(--key-bg), var(--key-bg-2));
+  border: 1px solid var(--key-border);
+  border-bottom: 3px solid var(--key-stem);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.22em;
+  color: #4A4038;
+  user-select: none;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Hide decorative rows on small screens, keep nav keys */
+@media (max-width: 640px) {
+  .keyboard {
+    padding: 8px 0.75rem 10px;
+    gap: 4px;
+  }
+
+  .row:not(:last-child) {
+    display: none;
+  }
+
+  .spaceRow {
+    display: none;
+  }
+
+  .navKey {
+    min-width: 36px;
+    height: 26px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .navKeyLabel {
+    font-size: 0.5rem;
+  }
+
+  .navKey {
+    min-width: 30px;
+    padding: 0 3px;
+  }
+}

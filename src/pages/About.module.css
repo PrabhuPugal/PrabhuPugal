@@ -71,16 +71,28 @@
   font-family: var(--font-mono);
   font-size: 0.73rem;
   padding: 0.2rem 0.55rem;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
   border-radius: var(--radius);
-  color: var(--text-muted);
-  background: var(--bg);
-  transition: border-color var(--transition), color var(--transition);
+  color: color-mix(in srgb, var(--brand) 80%, var(--text-muted));
+  background: color-mix(in srgb, var(--brand) 6%, var(--bg));
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
 }
 
 .badge:hover {
-  border-color: var(--accent-2);
-  color: var(--text);
+  border-color: color-mix(in srgb, var(--brand) 70%, transparent);
+  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 12%, var(--bg));
+}
+
+[data-theme="dark"] .badge {
+  background: color-mix(in srgb, var(--brand) 18%, var(--bg));
+  border-color: color-mix(in srgb, var(--brand) 50%, transparent);
+  color: var(--brand);
+}
+
+[data-theme="dark"] .badge:hover {
+  background: color-mix(in srgb, var(--brand) 28%, var(--bg));
+  border-color: var(--brand);
 }
 
 @media (max-width: 768px) {

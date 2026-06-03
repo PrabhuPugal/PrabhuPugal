@@ -9,7 +9,7 @@ export default function Travel() {
   const [selected, setSelected] = useState(null);
 
   return (
-    <main className="section">
+    <section className="section">
       <div className="container">
         <SectionReveal>
           <div className="section-header">
@@ -76,6 +76,6 @@ export default function Travel() {
       {selected && (
         <Lightbox item={selected} onClose={() => setSelected(null)} />
       )}
-    </main>
+    </section>
   );
 }

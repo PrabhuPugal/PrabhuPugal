@@ -11,13 +11,37 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 .copy {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-faint);
+}
+
+.emails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1rem;
+}
+
+.emailLink {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.emailLink:hover {
+  color: var(--text);
 }
 
 .links {
@@ -30,11 +54,26 @@
   color: var(--text-faint);
   display: flex;
   align-items: center;
-  transition: color var(--transition);
+  transition: transform var(--transition), filter var(--transition), opacity var(--transition);
+  opacity: 0.92;
 }
 
 .iconLink:hover {
-  color: var(--text);
+  transform: translateY(-2px);
+  filter: saturate(1.15);
+  opacity: 1;
+}
+
+.github {
+  color: var(--github-accent);
+}
+
+.linkedin {
+  color: #0a66c2;
+}
+
+.instagram {
+  color: #e4405f;
 }
 
 @media (max-width: 480px) {
@@ -42,5 +81,11 @@
     flex-direction: column;
     text-align: center;
     gap: 0.75rem;
+  }
+
+  .meta,
+  .emails {
+    align-items: center;
+    justify-content: center;
   }
 }

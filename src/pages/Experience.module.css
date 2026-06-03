@@ -1,105 +1,72 @@
-.timeline {
-  position: relative;
+.list {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  padding-left: 2rem;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 0.45rem;
-  top: 0.5rem;
-  bottom: 0.5rem;
-  width: 1px;
-  background: var(--border);
-}
-
-.item {
-  position: relative;
-  padding-bottom: 2.5rem;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.item:last-child {
-  padding-bottom: 0;
-}
-
-.dot {
-  position: absolute;
-  left: -2rem;
-  top: 0.35rem;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 2px solid var(--border-2);
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-.dotPulse {
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 2px solid var(--text-muted);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.4); }
+  gap: 1rem;
 }
 
 .card {
-  flex: 1;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
+  overflow: hidden;
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.card:hover {
+.card:hover,
+.cardOpen {
   border-color: var(--border-2);
   box-shadow: 0 4px 20px var(--shadow);
 }
 
-.cardTop {
+.cardHeader {
+  width: 100%;
+  text-align: left;
+  padding: 1.25rem 1.5rem;
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 1rem;
+  justify-content: space-between;
+  background: none;
+  transition: background-color var(--transition);
 }
 
-.meta {}
-
-.role {
-  font-family: var(--font-head);
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.cardHeader:hover {
+  background: var(--surface-2);
 }
 
-.details {
+.headerLeft {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.9rem;
+  align-items: flex-start;
+  flex: 1;
 }
 
-.detail {
+.headerIcon {
+  color: var(--text-faint);
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.headerMeta {
+  flex: 1;
+}
+
+.titleRow {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  font-family: var(--font-mono);
-  font-size: 0.73rem;
-  color: var(--text-faint);
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  color: var(--text);
+  line-height: 1.3;
 }
 
 .currentBadge {
-  flex-shrink: 0;
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 0.08em;
@@ -111,24 +78,51 @@
   white-space: nowrap;
 }
 
+.cardDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cardDetail {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+}
+
+.chevron {
+  color: var(--text-faint);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.body {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+}
+
 .bullets {
   list-style: none;
+  padding: 1rem 1.5rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .bullet {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   padding-left: 1.1rem;
   position: relative;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 .bullet::before {
-  content: '—';
+  content: '→';
   position: absolute;
   left: 0;
   color: var(--text-faint);
@@ -136,11 +130,11 @@
 }
 
 @media (max-width: 600px) {
-  .cardTop {
-    flex-direction: column;
+  .cardHeader {
+    padding: 1rem 1.25rem;
   }
 
-  .details {
+  .cardDetails {
     flex-direction: column;
     gap: 0.4rem;
   }

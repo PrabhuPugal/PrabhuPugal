@@ -1,4 +1,4 @@
-// Custom SVG social icons (lucide-react doesn't include brand icons)
+// Custom SVG social icons
 
 export function GithubIcon({ size = 20, className = "" }) {
   return (
@@ -26,6 +26,23 @@ export function LinkedinIcon({ size = 20, className = "" }) {
       className={className}
     >
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+export function InstagramIcon({ size = 20, className = "" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M7.75 2h8.5A5.756 5.756 0 0122 7.75v8.5A5.756 5.756 0 0116.25 22h-8.5A5.756 5.756 0 012 16.25v-8.5A5.756 5.756 0 017.75 2zm0 1.75A4.005 4.005 0 003.75 7.75v8.5a4.005 4.005 0 004 4h8.5a4.005 4.005 0 004-4v-8.5a4.005 4.005 0 00-4-4h-8.5z" />
+      <path d="M12 7a5 5 0 110 10 5 5 0 010-10zm0 1.75A3.25 3.25 0 1015.25 12 3.254 3.254 0 0012 8.75z" />
+      <circle cx="17.5" cy="6.5" r="1.25" />
     </svg>
   );
 }

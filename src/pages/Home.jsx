@@ -1,144 +1,325 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { ArrowRight, Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "../components/SocialIcons";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "../components/SocialIcons";
 import TypewriterText from "../components/TypewriterText";
+import { contactInfo } from "../data/contact";
 import styles from "./Home.module.css";
 
-const roles = [
-  "Graduate Research Assistant @ USC",
-  "Machine Learning & LLM Systems Researcher",
-  "Building smarter reasoning agents",
-  "AI Safety & Trustworthiness",
+const primaryRole = "Graduate Research Assistant @ USC";
+const bioText = "MS Computer Science student at USC, specializing in ML Systems and Generative AI. Currently a Graduate Research Assistant working on LLM reasoning, cognitive routing, and AI safety benchmarking.";
+
+const snapshots = [
+  {
+    prompt: "Why won't my loss converge?",
+    tokens: [
+      { token: '"skill issue"',  prob: 0.64, color: "#25BC24" },
+      { token: '"more epochs"',  prob: 0.18, color: "#33BBC8" },
+      { token: '"just cry"',     prob: 0.10, color: "#492EE1" },
+      { token: '"pray harder"',  prob: 0.05, color: "#ADAD27" },
+      { token: '"git blame"',    prob: 0.03, color: "#D338D3" },
+    ],
+    scores: [
+      { label: "ppl",        value: "3.2"  },
+      { label: "coherence",  value: "0.91" },
+      { label: "p_tok",      value: "12"   },
+      { label: "budget",     value: "988"  },
+    ],
+  },
+  {
+    prompt: "Summarise my Masters in one sentence.",
+    tokens: [
+      { token: '"delaying unemployment"', prob: 0.61, color: "#C23621" },
+      { token: '"send help"',             prob: 0.20, color: "#D338D3" },
+      { token: '"what\'s a GPA"',         prob: 0.10, color: "#ADAD27" },
+      { token: '"I owe USC money"',       prob: 0.06, color: "#33BBC8" },
+      { token: '"lol idk"',               prob: 0.03, color: "#492EE1" },
+    ],
+    scores: [
+      { label: "ppl",        value: "8.7"  },
+      { label: "coherence",  value: "0.74" },
+      { label: "p_tok",      value: "9"    },
+      { label: "budget",     value: "976"  },
+    ],
+  },
+  {
+    prompt: "Why did the transformer cross the road?",
+    tokens: [
+      { token: '"to self-attend"',      prob: 0.59, color: "#33BBC8" },
+      { token: '"BERT dared it"',       prob: 0.21, color: "#ADAD27" },
+      { token: '"no positional clue"',  prob: 0.11, color: "#492EE1" },
+      { token: '"lost in translation"', prob: 0.06, color: "#25BC24" },
+      { token: '"asked GPT first"',     prob: 0.03, color: "#D338D3" },
+    ],
+    scores: [
+      { label: "ppl",        value: "12.4" },
+      { label: "coherence",  value: "0.68" },
+      { label: "p_tok",      value: "10"   },
+      { label: "budget",     value: "963"  },
+    ],
+  },
+  {
+    prompt: "My GPU is on fire. Literally.",
+    tokens: [
+      { token: '"free hand warmer"', prob: 0.58, color: "#C23621" },
+      { token: '"s\'mores time"',    prob: 0.22, color: "#ADAD27" },
+      { token: '"feature not bug"',  prob: 0.11, color: "#25BC24" },
+      { token: '"still faster"',     prob: 0.06, color: "#D338D3" },
+      { token: '"worth it"',         prob: 0.03, color: "#33BBC8" },
+    ],
+    scores: [
+      { label: "ppl",        value: "5.1"  },
+      { label: "coherence",  value: "0.83" },
+      { label: "p_tok",      value: "8"    },
+      { label: "budget",     value: "951"  },
+    ],
+  },
 ];
 
-export default function Home() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [roleKey, setRoleKey] = useState(0);
-  const [nameDone, setNameDone] = useState(false);
+
+
+function LLMCard() {
+  const [snap, setSnap] = useState(0);
+  const [phase, setPhase] = useState("generating");
+  const [fading, setFading] = useState(false);
+  const [typedOutput, setTypedOutput] = useState("");
+
+  // 5s cycle
+  useEffect(() => {
+    const id = setInterval(() => {
+      setFading(true);
+      setTimeout(() => {
+        setSnap((s) => (s + 1) % snapshots.length);
+        setFading(false);
+      }, 300);
+    }, 5000);
+    return () => clearInterval(id);
+  }, []);
+
+  // first 3s = generating, then show output
+  useEffect(() => {
+    setPhase("generating");
+    setTypedOutput("");
+    const id = setTimeout(() => setPhase("output"), 3000);
+    return () => clearTimeout(id);
+  }, [snap]);
+
+  // typewriter when output phase begins
+  useEffect(() => {
+    if (phase !== "output") return;
+    const target = snapshots[snap].tokens[0].token;
+    let i = 0;
+    const id = setInterval(() => {
+      i++;
+      setTypedOutput(target.slice(0, i));
+      if (i >= target.length) clearInterval(id);
+    }, 45);
+    return () => clearInterval(id);
+  }, [phase]);
+
+  const { prompt, tokens, scores } = snapshots[snap];
+
+  return (
+    <div className={styles.llmCard}>
+      <div className={styles.llmHeader}>
+        <span className={styles.llmModel}>tokenscrooge-1b</span>
+        <span className={styles.llmStatus}>
+          <span className={styles.pulse} />
+          {phase === "generating" ? "generating" : "sampled"}
+        </span>
+      </div>
+
+      <div className={styles.llmBody}>
+        <div className={styles.llmSection}>
+          <span className={styles.llmLabel}>prompt</span>
+          <span className={`${styles.llmPromptText} ${fading ? styles.fade : ""}`}>
+            "{prompt}"
+          </span>
+        </div>
+
+        <div className={styles.llmSection}>
+          <span className={styles.llmLabel}>next token · top-5</span>
+          <div className={`${styles.llmTokens} ${fading ? styles.fade : ""}`}>
+            {tokens.map(({ token, prob, color }, i) => {
+              const isOutput = phase === "output";
+              return (
+                <div key={token} className={styles.llmToken}>
+                  <span className={styles.tokenName}>{token}</span>
+                  <div className={styles.tokenBarTrack}>
+                    <div
+                      key={`${phase}-${token}`}
+                      className={isOutput ? styles.tokenBarFillAnimate : styles.tokenBarFill}
+                      style={{
+                        "--bar-w": `${prob * 100}%`,
+                        background: color,
+                        ...(isOutput ? { animationDelay: `${i * 0.08}s` } : { width: "0%" }),
+                      }}
+                    />
+                  </div>
+                  {isOutput && (
+                    <span className={styles.tokenProb} style={{ color }}>
+                      {Math.round(prob * 100)}%
+                    </span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {phase === "generating" ? (
+          <div className={styles.thinking}>
+            <span className={styles.thinkingText}>thinking</span>
+            <span className={styles.thinkDot} style={{ animationDelay: "0s" }}>.</span>
+            <span className={styles.thinkDot} style={{ animationDelay: "0.2s" }}>.</span>
+            <span className={styles.thinkDot} style={{ animationDelay: "0.4s" }}>.</span>
+          </div>
+        ) : (
+          <div className={styles.llmSection}>
+            <span className={styles.llmLabel}>output</span>
+            <span className={styles.llmOutput}>
+              → {typedOutput}<span className="cursor" />
+            </span>
+          </div>
+        )}
+      </div>
+
+      <div className={styles.llmFooter}>
+        {scores.map(({ label, value }) => (
+          <span key={label}>{label}&nbsp;{value}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function Home({ onSelectSection }) {
+  const [labelDone, setLabelDone] = useState(false);
+  const [nameDone,  setNameDone]  = useState(false);
+  const [roleDone,  setRoleDone]  = useState(false);
+  const [bioDone,   setBioDone]   = useState(false);
 
   useEffect(() => {
-    if (!nameDone) return;
-    const timer = setTimeout(() => {
-      const next = () => {
-        setRoleIndex((i) => (i + 1) % roles.length);
-        setRoleKey((k) => k + 1);
-      };
-      const id = setInterval(next, 3600);
-      return () => clearInterval(id);
-    }, 800);
-    return () => clearTimeout(timer);
-  }, [nameDone]);
+    if (!roleDone) return;
+    setBioDone(true);
+  }, [roleDone]);
 
   return (
     <main className={styles.hero}>
       <div className={styles.inner}>
+
+        {/* Column 1 — Photo */}
+        <div className={styles.photoCol}>
+          <div className={styles.avatar}>
+            <img src="/me.jpg" alt="Prabhu Pugalenthi" className={styles.avatarImg} />
+          </div>
+        </div>
+
+        {/* Column 2 — Content */}
         <div className={styles.content}>
-          <span className={styles.label}>// hello world</span>
+          <span className={styles.label}>
+            <TypewriterText
+              text="<|im_start|>user hello world"
+              speed={18}
+              delay={100}
+              onDone={() => setLabelDone(true)}
+            />
+          </span>
 
           <h1 className={styles.name}>
-            <TypewriterText
-              text="Prabhu Pugalenthi."
-              speed={55}
-              delay={300}
-              onDone={() => setNameDone(true)}
-            />
+            {labelDone && (
+              <TypewriterText
+                text="Prabhu Pugalenthi"
+                speed={32}
+                delay={0}
+                onDone={() => setNameDone(true)}
+              />
+            )}
           </h1>
 
           <div className={styles.roleWrap}>
             {nameDone && (
               <TypewriterText
-                key={roleKey}
-                text={roles[roleIndex]}
-                speed={38}
-                delay={200}
+                text={primaryRole}
+                speed={16}
+                delay={0}
                 className={styles.role}
+                onDone={() => setRoleDone(true)}
               />
             )}
           </div>
 
           <p className={styles.bio}>
-            MS Computer Science student at USC, specializing in ML Systems and Generative AI.
-            Currently a Graduate Research Assistant working on LLM reasoning, cognitive routing,
-            and AI safety benchmarking.
+            {roleDone && (
+              <span style={{ animation: "fadeUp 0.5s ease both" }}>
+                {bioText}
+              </span>
+            )}
           </p>
 
-          <div className={styles.ctas}>
-            <Link to="/research" className={styles.btnPrimary}>
+          {bioDone && (
+          <div className={styles.ctas} style={{ animation: "fadeUp 0.4s ease both" }}>
+            <button
+              type="button"
+              className={styles.btnPrimary}
+              onClick={() => onSelectSection("research")}
+            >
               View Research <ArrowRight size={16} />
-            </Link>
-            <Link to="/projects" className={styles.btnSecondary}>
+            </button>
+            <button
+              type="button"
+              className={styles.btnSecondary}
+              onClick={() => onSelectSection("projects")}
+            >
               See Projects <ArrowRight size={16} />
-            </Link>
+            </button>
           </div>
+          )}
 
-          <div className={styles.socials}>
+          {bioDone && (<div className={styles.socials} style={{ animation: "fadeUp 0.4s ease 0.15s both" }}>
             <a
-              href="https://github.com"
+              href={contactInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.socialLink}
+              className={`${styles.socialLink} ${styles.github}`}
               aria-label="GitHub"
             >
               <GithubIcon size={20} />
             </a>
             <a
-              href="https://linkedin.com"
+              href={contactInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.socialLink}
+              className={`${styles.socialLink} ${styles.linkedin}`}
               aria-label="LinkedIn"
             >
               <LinkedinIcon size={20} />
             </a>
             <a
-              href="mailto:prabhupugal01@gmail.com"
-              className={styles.socialLink}
-              aria-label="Email"
+              href={contactInfo.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.socialLink} ${styles.instagram}`}
+              aria-label="Instagram"
+            >
+              <InstagramIcon size={20} />
+            </a>
+            <a
+              href={`mailto:${contactInfo.personalEmail}`}
+              className={`${styles.socialLink} ${styles.email}`}
+              aria-label="Personal email"
             >
               <Mail size={20} />
             </a>
           </div>
+          )}
         </div>
 
+        {/* Column 3 — LLM card */}
         <div className={styles.decoration}>
-          <div className={styles.typeCard}>
-            <div className={styles.typeCardHeader}>
-              <span className={styles.dot} />
-              <span className={styles.dot} />
-              <span className={styles.dot} />
-            </div>
-            <div className={styles.typeCardBody}>
-              <span className={styles.codeLine}>
-                <span className={styles.kw}>const</span> prabhu = &#123;
-              </span>
-              <span className={styles.codeLine}>
-                &nbsp;&nbsp;role: <span className={styles.str}>"Researcher"</span>,
-              </span>
-              <span className={styles.codeLine}>
-                &nbsp;&nbsp;school: <span className={styles.str}>"USC"</span>,
-              </span>
-              <span className={styles.codeLine}>
-                &nbsp;&nbsp;focus: <span className={styles.str}>"LLM Systems"</span>,
-              </span>
-              <span className={styles.codeLine}>
-                &nbsp;&nbsp;building: <span className={styles.str}>"CogRouter"</span>,
-              </span>
-              <span className={styles.codeLine}>&#125;;</span>
-              <span className={styles.codeLine}>&nbsp;</span>
-              <span className={styles.codeLine}>
-                prabhu.<span className={styles.fn}>research</span>();
-                <span className="cursor" />
-              </span>
-            </div>
-          </div>
+          <LLMCard />
         </div>
       </div>
 
-      <div className={styles.scrollHint}>
-        <span className={styles.scrollText}>scroll</span>
-        <div className={styles.scrollLine} />
-      </div>
     </main>
   );
 }

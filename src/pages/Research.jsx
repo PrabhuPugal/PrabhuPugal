@@ -10,7 +10,7 @@ export default function Research() {
   const [expanded, setExpanded] = useState(null);
 
   return (
-    <main className="section">
+    <section className="section">
       <div className="container">
         <SectionReveal>
           <div className="section-header">
@@ -77,6 +77,6 @@ export default function Research() {
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 }

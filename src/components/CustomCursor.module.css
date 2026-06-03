@@ -1,0 +1,64 @@
+/* ── Custom cursor wrapper — 0×0 anchor translated to cursor pos ─ */
+.cursorWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 999999;
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+/* ── Beam — blinking text-insertion caret, snaps to cursor ──────── */
+@keyframes caretBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.beam {
+  position: absolute;
+  width: 2px;
+  height: 18px;
+  background: var(--text);
+  transform: translate(-50%, -50%);
+  animation: caretBlink 1s step-end infinite;
+  transition:
+    height 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+.beamHover {
+  height: 13px;
+  opacity: 0.5;
+  animation: none;
+}
+
+/* ── Token box — lerps behind cursor, like a selected token ─────── */
+.token {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--text);
+  border-radius: 3px;
+  transform: translate(-50%, -50%);
+  opacity: 0.28;
+  transition:
+    width  0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.tokenHover {
+  width: 40px;
+  height: 40px;
+  opacity: 0.6;
+}
+
+/* ── Only show on pointer devices — hide on touch ────────────────── */
+@media (pointer: coarse) {
+  .cursorWrap {
+    display: none;
+  }
+}

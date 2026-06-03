@@ -7,7 +7,7 @@ const iconMap = { Code2, Brain, Layers, Server, Wrench, FlaskConical };
 
 export default function About() {
   return (
-    <main className="section">
+    <section className="section">
       <div className="container">
         <SectionReveal>
           <div className="section-header">
@@ -61,7 +61,11 @@ export default function About() {
                       </div>
                       <div className={styles.badges}>
                         {group.items.map((item) => (
-                          <span key={item} className={styles.badge}>{item}</span>
+                          <span
+                            key={item.name}
+                            className={styles.badge}
+                            style={{ "--brand": item.color }}
+                          >{item.name}</span>
                         ))}
                       </div>
                     </div>
@@ -72,6 +76,6 @@ export default function About() {
           </SectionReveal>
         </div>
       </div>
-    </main>
+    </section>
   );
 }

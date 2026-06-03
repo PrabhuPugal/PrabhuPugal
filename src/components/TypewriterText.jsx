@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function TypewriterText({
   text,
@@ -9,26 +9,33 @@ export default function TypewriterText({
   onDone = null,
 }) {
   const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
   const indexRef = useRef(0);
+  const onDoneRef = useRef(onDone);
   const timeoutRef = useRef(null);
 
   useEffect(() => {
-    setDisplayed("");
-    setDone(false);
-    indexRef.current = 0;
+    onDoneRef.current = onDone;
+  }, [onDone]);
 
+  useEffect(() => {
     const start = setTimeout(() => {
+      setDisplayed("");
+      setIsComplete(false);
+      indexRef.current = 0;
+
       const type = () => {
         if (indexRef.current < text.length) {
           setDisplayed(text.slice(0, indexRef.current + 1));
-          indexRef.current++;
+          indexRef.current += 1;
           timeoutRef.current = setTimeout(type, speed);
-        } else {
-          setDone(true);
-          if (onDone) onDone();
+          return;
         }
+
+        setIsComplete(true);
+        onDoneRef.current?.();
       };
+
       type();
     }, delay);
 
@@ -36,13 +43,12 @@ export default function TypewriterText({
       clearTimeout(start);
       clearTimeout(timeoutRef.current);
     };
-  }, [text, speed, delay]);
+  }, [delay, speed, text]);
 
   return (
     <span className={className}>
       {displayed}
-      {showCursor && !done && <span className="cursor" />}
-      {showCursor && done && <span className="cursor" />}
+      {showCursor && !isComplete && <span className="cursor" />}
     </span>
   );
 }

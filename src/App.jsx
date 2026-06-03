@@ -1,8 +1,8 @@
-import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import CustomCursor from "./components/CustomCursor";
+import ChatBubble from "./components/ChatBubble";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
@@ -13,47 +13,56 @@ import Travel from "./pages/Travel";
 import Contact from "./pages/Contact";
 import "./styles/global.css";
 
-const pageVariants = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, y: -8,  transition: { duration: 0.2 } },
-};
+export const sections = [
+  { id: "home",       path: "/",           label: "Home",       component: Home },
+  { id: "about",      path: "/about",      label: "About",      component: About },
+  { id: "experience", path: "/experience", label: "Experience", component: Experience },
+  { id: "research",   path: "/research",   label: "Research",   component: Research },
+  { id: "projects",   path: "/projects",   label: "Projects",   component: Projects },
+  { id: "education",  path: "/education",  label: "Education",  component: Education },
+  { id: "travel",     path: "/travel",     label: "Travel",     component: Travel },
+  { id: "contact",    path: "/contact",    label: "Contact",    component: Contact },
+];
 
-function AnimatedRoutes() {
-  const location = useLocation();
+function AppInner() {
+  const navigate = useNavigate();
+
+  const handleSelectSection = (sectionId) => {
+    const section = sections.find((s) => s.id === sectionId);
+    if (section) navigate(section.path);
+  };
+
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        variants={pageVariants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
-      >
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/research" element={<Research />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/travel" element={<Travel />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        <Footer />
-      </motion.div>
-    </AnimatePresence>
+    <>
+      <CustomCursor />
+      <ChatBubble />
+      <div className="appShell">
+        <Navbar sections={sections} onSelectSection={handleSelectSection} />
+        <div className="pageFlow">
+          <Routes>
+            {sections.map(({ id, path, component: Page }) => (
+              <Route
+                key={id}
+                path={path}
+                element={
+                  <div className="sectionPage">
+                    <Page onSelectSection={handleSelectSection} />
+                  </div>
+                }
+              />
+            ))}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+      </div>
+    </>
   );
 }
 
 export default function App() {
   return (
     <ThemeProvider>
-      <HashRouter>
-        <Navbar />
-        <AnimatedRoutes />
-      </HashRouter>
+      <AppInner />
     </ThemeProvider>
   );
 }

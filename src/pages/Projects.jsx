@@ -11,7 +11,7 @@ export default function Projects() {
   const [expanded, setExpanded] = useState(null);
 
   return (
-    <main className="section">
+    <section className="section">
       <div className="container">
         <SectionReveal>
           <div className="section-header">
@@ -87,6 +87,6 @@ export default function Projects() {
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 }

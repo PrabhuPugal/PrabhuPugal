@@ -1,82 +1,69 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Sun, Moon, Menu, X } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../context/useTheme";
 import styles from "./Navbar.module.css";
 
-const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/experience", label: "Experience" },
-  { to: "/research", label: "Research" },
-  { to: "/projects", label: "Projects" },
-  { to: "/education", label: "Education" },
-  { to: "/travel", label: "Travel" },
-  { to: "/contact", label: "Contact" },
-];
-
-export default function Navbar() {
+export default function Navbar({ sections, onSelectSection }) {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
+  const navigate = useNavigate();
+
+  const navSections = sections;
+
+  const handleLogoClick = () => {
+    navigate("/");
+    setMenuOpen(false);
+  };
 
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <NavLink to="/" className={styles.logo} onClick={() => setMenuOpen(false)}>
-          P<span className={styles.logoDot}>.</span>
-        </NavLink>
+        <button type="button" className={styles.logo} onClick={handleLogoClick}>
+          pb
+        </button>
 
-        {/* Desktop links */}
         <ul className={styles.links}>
-          {navLinks.map((link) => (
-            <li key={link.to}>
+          {navSections.map((section) => (
+            <li key={section.id}>
               <NavLink
-                to={link.to}
-                end={link.to === "/"}
+                to={section.path}
                 className={({ isActive }) =>
                   `${styles.link} ${isActive ? styles.active : ""}`
                 }
               >
-                {link.label}
+                {section.label}
               </NavLink>
             </li>
           ))}
         </ul>
 
         <div className={styles.actions}>
-          <button
-            className={styles.themeBtn}
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+          <button className={styles.themeBtn} onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
           </button>
-
           <button
             className={styles.menuBtn}
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle menu"
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile drawer */}
       {menuOpen && (
         <div className={styles.drawer}>
-          {navLinks.map((link) => (
+          {navSections.map((section) => (
             <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === "/"}
+              key={section.id}
+              to={section.path}
               className={({ isActive }) =>
                 `${styles.drawerLink} ${isActive ? styles.drawerActive : ""}`
               }
               onClick={() => setMenuOpen(false)}
             >
-              {link.label}
+              {section.label}
             </NavLink>
           ))}
         </div>

@@ -1,4 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="4" fill="#2B2B2B"/>
-  <text x="8" y="23" font-family="serif" font-size="18" fill="#F5F0E8" font-weight="bold">P</text>
+  <rect width="32" height="32" rx="6" fill="#202020"/>
+  <text
+    x="16" y="22"
+    font-family="Georgia, serif"
+    font-size="15"
+    font-weight="700"
+    fill="#F0EEEA"
+    text-anchor="middle"
+    letter-spacing="-0.5"
+  >pb</text>
 </svg>

@@ -41,7 +41,7 @@ const education = [
 
 export default function Education() {
   return (
-    <main className="section">
+    <section className="section">
       <div className="container">
         <SectionReveal>
           <div className="section-header">
@@ -100,6 +100,6 @@ export default function Education() {
           ))}
         </div>
       </div>
-    </main>
+    </section>
   );
 }
