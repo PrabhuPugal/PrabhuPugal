@@ -85,6 +85,7 @@
   font-family: var(--font-mono);
   font-size: 0.78rem;
   color: var(--text-muted);
+  text-align: left;
 }
 
 .details {

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Mail, Send } from "lucide-react";
+import MagneticWrap from "../components/MagneticWrap";
 import { GithubIcon, InstagramIcon, LinkedinIcon } from "../components/SocialIcons";
 import SectionReveal from "../components/SectionReveal";
+import ScrambleText from "../components/ScrambleText";
 import { contactInfo } from "../data/contact";
 import styles from "./Contact.module.css";
 
@@ -26,7 +28,7 @@ export default function Contact() {
       <div className="container">
         <SectionReveal>
           <div className="section-header">
-            <span className="section-label">07 / contact</span>
+            <ScrambleText className="section-label" text="07 / contact" />
           </div>
         </SectionReveal>
 
@@ -73,13 +75,15 @@ export default function Contact() {
               </div>
 
               <div className={styles.resumeWrap}>
-                <a
-                  href="/Prabhu Pugalenthi Resume.pdf"
-                  download
-                  className={styles.resumeBtn}
-                >
-                  Download Resume {"->"}
-                </a>
+                <MagneticWrap>
+                  <a
+                    href="/resume.pdf"
+                    download
+                    className={styles.resumeBtn}
+                  >
+                    Download Resume {"->"}
+                  </a>
+                </MagneticWrap>
               </div>
             </div>
           </SectionReveal>

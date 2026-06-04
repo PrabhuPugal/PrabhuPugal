@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Cpu, ChevronDown, ChevronUp, Calendar, ExternalLink } from "lucide-react";
 import { GithubIcon } from "../components/SocialIcons";
 import SectionReveal from "../components/SectionReveal";
+import ScrambleText from "../components/ScrambleText";
 import Tag from "../components/Tag";
 import { projects } from "../data/projects";
 import styles from "./Projects.module.css";
@@ -15,14 +16,14 @@ export default function Projects() {
       <div className="container">
         <SectionReveal>
           <div className="section-header">
-            <span className="section-label">04 / projects</span>
+            <ScrambleText className="section-label" text="04 / projects" />
           </div>
         </SectionReveal>
 
         <div className={styles.grid}>
           {projects.map((proj, i) => (
             <SectionReveal key={proj.id} delay={i * 0.1}>
-              <div className={`${styles.card} ${expanded === proj.id ? styles.cardOpen : ""}`}>
+              <div data-shine className={`${styles.card} ${expanded === proj.id ? styles.cardOpen : ""}`}>
                 <div className={styles.cardTop}>
                   <Cpu size={16} className={styles.icon} />
                   <div className={styles.cardMeta}>

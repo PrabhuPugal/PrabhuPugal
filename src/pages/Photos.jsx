@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { MapPin, Camera } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
+import ScrambleText from "../components/ScrambleText";
 import Lightbox from "../components/Lightbox";
 import USMap from "../components/USMap";
 import { photos } from "../data/photos";
@@ -91,7 +92,7 @@ export default function Photos() {
       <div className="container">
         <SectionReveal>
           <div className="section-header">
-            <span className="section-label">06 / lens</span>
+            <ScrambleText className="section-label" text="05 / lens" />
           </div>
         </SectionReveal>
 

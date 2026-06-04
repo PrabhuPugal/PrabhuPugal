@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { visitedStates, visitedCities } from "../data/travel";
 import { useTheme } from "../context/useTheme";
@@ -46,7 +47,7 @@ function Map({ isDark, size = "normal" }) {
           }
         </Geographies>
 
-        {visitedCities.map(({ name, state, coordinates, isHome }) => (
+        {visitedCities.map(({ name, state, coordinates, isHome, labelDx, labelAnchor }) => (
           <Marker
             key={`${name}-${state}`}
             coordinates={coordinates}
@@ -66,8 +67,12 @@ function Map({ isDark, size = "normal" }) {
               <>
                 <circle r={isLarge ? 5 : 4} fill={PIN_RED} opacity={0.2} />
                 <circle r={isLarge ? 2.5 : 2} fill={PIN_RED} />
-                <text textAnchor="middle" y={isLarge ? -10 : -8}
-                  style={{ fontFamily: "IBM Plex Mono, monospace", fontSize: isLarge ? "7px" : "5.5px", fill: labelColor, pointerEvents: "none" }}>
+                <text
+                  textAnchor={labelAnchor ?? "middle"}
+                  x={labelDx ?? 0}
+                  y={isLarge ? -10 : -8}
+                  style={{ fontFamily: "IBM Plex Mono, monospace", fontSize: isLarge ? "7px" : "5.5px", fill: labelColor, pointerEvents: "none" }}
+                >
                   {name}
                 </text>
               </>
@@ -99,30 +104,46 @@ export default function USMap() {
       </button>
 
       {/* Overlay */}
-      {open && (
-        <div className={styles.overlay} onClick={() => setOpen(false)}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.modalHeader}>
-              <div>
-                <span className={styles.label}>cities visited</span>
-                <span className={styles.count}>{visitedStates.length} states · {visitedCities.length} cities</span>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className={styles.overlay}
+            onClick={() => setOpen(false)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <motion.div
+              className={styles.modal}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.94, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className={styles.modalHeader}>
+                <div>
+                  <span className={styles.label}>cities visited</span>
+                  <span className={styles.count}>{visitedStates.length} states · {visitedCities.length} cities</span>
+                </div>
+                <div className={styles.modalLegend}>
+                  <span className={styles.legendItem}>
+                    <span className={styles.legendDot} style={{ background: HOME_COLOR }} /> home
+                  </span>
+                  <span className={styles.legendItem}>
+                    <span className={styles.legendDot} style={{ background: PIN_RED }} /> visited
+                  </span>
+                  <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="Close map">
+                    <X size={16} />
+                  </button>
+                </div>
               </div>
-              <div className={styles.modalLegend}>
-                <span className={styles.legendItem}>
-                  <span className={styles.legendDot} style={{ background: HOME_COLOR }} /> home
-                </span>
-                <span className={styles.legendItem}>
-                  <span className={styles.legendDot} style={{ background: PIN_RED }} /> visited
-                </span>
-                <button className={styles.closeBtn} onClick={() => setOpen(false)} aria-label="Close map">
-                  <X size={16} />
-                </button>
-              </div>
-            </div>
-            <Map isDark={isDark} size="large" />
-          </div>
-        </div>
-      )}
+              <Map isDark={isDark} size="large" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

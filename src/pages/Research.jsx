@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookOpen, ChevronDown, ChevronUp, Calendar, User } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
+import ScrambleText from "../components/ScrambleText";
 import Tag from "../components/Tag";
 import { researchProjects } from "../data/research";
 import styles from "./Research.module.css";
@@ -14,14 +15,14 @@ export default function Research() {
       <div className="container">
         <SectionReveal>
           <div className="section-header">
-            <span className="section-label">03 / research</span>
+            <ScrambleText className="section-label" text="03 / research" />
           </div>
         </SectionReveal>
 
         <div className={styles.list}>
           {researchProjects.map((proj, i) => (
             <SectionReveal key={proj.id} delay={i * 0.1}>
-              <div className={`${styles.card} ${expanded === proj.id ? styles.cardOpen : ""}`}>
+              <div data-shine className={`${styles.card} ${expanded === proj.id ? styles.cardOpen : ""}`}>
                 <button
                   className={styles.cardHeader}
                   onClick={() => setExpanded(expanded === proj.id ? null : proj.id)}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Briefcase, ChevronDown, ChevronUp, Building2, MapPin, Calendar } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
+import ScrambleText from "../components/ScrambleText";
 import { experiences } from "../data/experience";
 import styles from "./Experience.module.css";
 
@@ -13,14 +14,14 @@ export default function Experience() {
       <div className="container">
         <SectionReveal>
           <div className="section-header">
-            <span className="section-label">02 / experience</span>
+            <ScrambleText className="section-label" text="02 / experience" />
           </div>
         </SectionReveal>
 
         <div className={styles.list}>
           {experiences.map((exp, i) => (
             <SectionReveal key={exp.id} delay={i * 0.08}>
-              <div className={`${styles.card} ${expanded === exp.id ? styles.cardOpen : ""}`}>
+              <div data-shine className={`${styles.card} ${expanded === exp.id ? styles.cardOpen : ""}`}>
                 <button
                   className={styles.cardHeader}
                   onClick={() => setExpanded(expanded === exp.id ? null : exp.id)}

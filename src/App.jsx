@@ -5,12 +5,12 @@ import CustomCursor from "./components/CustomCursor";
 import ChatBubble from "./components/ChatBubble";
 import ThemeToggle from "./components/ThemeToggle";
 import ScrollToTop from "./components/ScrollToTop";
+import GlobalEffects from "./components/GlobalEffects";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
 import Research from "./pages/Research";
 import Projects from "./pages/Projects";
-import Education from "./pages/Education";
 import Photos from "./pages/Photos";
 import "./styles/global.css";
 
@@ -20,7 +20,6 @@ export const sections = [
   { id: "experience", path: "/experience", label: "Experience", component: Experience },
   { id: "research",   path: "/research",   label: "Research",   component: Research },
   { id: "projects",   path: "/projects",   label: "Projects",   component: Projects },
-  { id: "education",  path: "/education",  label: "Education",  component: Education },
   { id: "lens",        path: "/lens",        label: "Lens",        component: Photos },
 ];
 
@@ -35,6 +34,7 @@ function AppInner() {
   return (
     <>
       <ScrollToTop />
+      <GlobalEffects />
       <CustomCursor />
       <ThemeToggle />
       <ChatBubble />

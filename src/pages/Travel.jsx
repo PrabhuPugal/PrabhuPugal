@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MapPin } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
+import ScrambleText from "../components/ScrambleText";
 import Lightbox from "../components/Lightbox";
 import { travelDestinations } from "../data/travel";
 import styles from "./Travel.module.css";
@@ -13,7 +14,7 @@ export default function Travel() {
       <div className="container">
         <SectionReveal>
           <div className="section-header">
-            <span className="section-label">06 / travel</span>
+            <ScrambleText className="section-label" text="06 / travel" />
             <p className={styles.subtitle}>
               Places I've called home, visited, and wandered through.
             </p>

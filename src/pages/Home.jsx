@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Mail } from "lucide-react";
+import MagneticWrap from "../components/MagneticWrap";
 import { GithubIcon, InstagramIcon, LinkedinIcon } from "../components/SocialIcons";
 import TypewriterText from "../components/TypewriterText";
 import { contactInfo } from "../data/contact";
@@ -258,28 +259,34 @@ export default function Home({ onSelectSection }) {
 
           {bioDone && (
           <div className={styles.ctas} style={{ animation: "fadeUp 0.4s ease both" }}>
-            <button
-              type="button"
-              className={styles.btnPrimary}
-              onClick={() => onSelectSection("research")}
-            >
-              View Research <ArrowRight size={16} />
-            </button>
-            <button
-              type="button"
-              className={styles.btnSecondary}
-              onClick={() => onSelectSection("projects")}
-            >
-              See Projects <ArrowRight size={16} />
-            </button>
-            <a
-              href="/Prabhu Pugalenthi Resume.pdf"
-              download
-              className={styles.btnResume}
-              data-tooltip="Download my latest resume as a PDF"
-            >
-              Resume ↓
-            </a>
+            <MagneticWrap>
+              <button
+                type="button"
+                className={styles.btnPrimary}
+                onClick={() => onSelectSection("research")}
+              >
+                View Research <ArrowRight size={16} />
+              </button>
+            </MagneticWrap>
+            <MagneticWrap>
+              <button
+                type="button"
+                className={styles.btnSecondary}
+                onClick={() => onSelectSection("projects")}
+              >
+                See Projects <ArrowRight size={16} />
+              </button>
+            </MagneticWrap>
+            <MagneticWrap>
+              <a
+                href="/resume.pdf"
+                download
+                className={styles.btnResume}
+                data-tooltip="Download my latest resume as a PDF"
+              >
+                Resume ↓
+              </a>
+            </MagneticWrap>
           </div>
           )}
 

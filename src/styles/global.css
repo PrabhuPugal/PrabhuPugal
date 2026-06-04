@@ -121,10 +121,10 @@ code, pre {
 
 /* ── Layout ─────────────────────────────────────────────────── */
 .container {
-  max-width: 1100px;
+  max-width: 1320px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 2rem;
 }
 
 @media (max-width: 768px) {
@@ -204,6 +204,25 @@ code, pre {
   width: 100%;
   margin-top: 0.4rem;
 }
+
+/* ── Card shine effect (data-shine) ────────────────────────── */
+[data-shine] { position: relative; overflow: hidden; }
+[data-shine]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--shine-x, 50%) var(--shine-y, 50%),
+    rgba(255,255,255,0.08) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+[data-shine]:hover::after { opacity: 1; }
 
 /* ── Utility Animations ─────────────────────────────────────── */
 @keyframes fadeUp {
