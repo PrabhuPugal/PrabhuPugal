@@ -1,87 +1,67 @@
-// macOS Terminal "Basic" ANSI palette
-const T = {
-  red:     "#C23621",
-  green:   "#25BC24",
-  yellow:  "#ADAD27",
-  blue:    "#492EE1",
-  magenta: "#D338D3",
-  cyan:    "#33BBC8",
-  // bright variants
-  bred:     "#FC391F",
-  bgreen:   "#31E722",
-  byellow:  "#EAEC23",
-  bblue:    "#5833FF",
-  bmagenta: "#F935F8",
-  bcyan:    "#14F0F0",
+// One accent color per category — applied to every badge in that group
+const C = {
+  research: "#A78BFA", // violet / purple
+  systems:  "#4ADE80", // green
+  tools:    "#FCD34D", // amber
+  methods:  "#FB7185", // rose
 };
 
 export const skills = [
   {
-    category: "Programming",
-    icon: "Code2",
-    items: [
-      { name: "Python",  color: T.cyan },
-      { name: "C/C++",   color: T.blue },
-      { name: "SQL",     color: T.yellow },
-      { name: "Bash",    color: T.green },
-    ],
-  },
-  {
-    category: "Machine Learning & AI",
+    category: "Research Areas",
     icon: "Brain",
     items: [
-      { name: "Deep Learning",          color: T.magenta },
-      { name: "Reinforcement Learning", color: T.red },
-      { name: "LLM Systems",            color: T.cyan },
-      { name: "Generative AI",          color: T.blue },
-      { name: "Model Evaluation",       color: T.yellow },
-    ],
-  },
-  {
-    category: "Frameworks & Libraries",
-    icon: "Layers",
-    items: [
-      { name: "PyTorch",      color: T.bred },
-      { name: "Scikit-learn", color: T.yellow },
-      { name: "NumPy",        color: T.cyan },
-      { name: "Pandas",       color: T.magenta },
-      { name: "TRL",          color: T.green },
-      { name: "PEFT",         color: T.bgreen },
-      { name: "vLLM",         color: T.blue },
-      { name: "Hugging Face", color: T.byellow },
+      { name: "Reasoning Budgeting",          color: C.research },
+      { name: "Cognitive Routing",            color: C.research },
+      { name: "LLM Behavioral Analysis",      color: C.research },
+      { name: "Psychological Traits in LLMs", color: C.research },
+      { name: "Token-level Inference",        color: C.research },
+      { name: "AI-based Game Coaching",       color: C.research },
+      { name: "Social Survey Simulation",     color: C.research },
+      { name: "AI Safety Benchmarking",       color: C.research },
+      { name: "Agentic Reasoning",            color: C.research },
+      { name: "Mathematical Reasoning",       color: C.research },
     ],
   },
   {
     category: "Systems & Infrastructure",
     icon: "Server",
     items: [
-      { name: "REST APIs",   color: T.green },
-      { name: "Docker",      color: T.cyan },
-      { name: "Apptainer",   color: T.blue },
-      { name: "CI/CD",       color: T.yellow },
-      { name: "Linux / HPC", color: T.byellow },
-      { name: "Slurm",       color: T.magenta },
+      { name: "Linux / HPC",  color: C.systems },
+      { name: "Slurm",        color: C.systems },
+      { name: "Docker",       color: C.systems },
+      { name: "Apptainer",    color: C.systems },
+      { name: "REST APIs",    color: C.systems },
+      { name: "CI/CD",        color: C.systems },
     ],
   },
   {
     category: "Tools",
     icon: "Wrench",
     items: [
-      { name: "Git / GitHub",  color: T.red },
-      { name: "Power BI",      color: T.byellow },
-      { name: "Jupyter",       color: T.bred },
-      { name: "Lambda Labs",   color: T.magenta },
-      { name: "USC CARC",      color: T.cyan },
+      { name: "Git / GitHub",  color: C.tools },
+      { name: "PyTorch",       color: C.tools },
+      { name: "Hugging Face",  color: C.tools },
+      { name: "vLLM",          color: C.tools },
+      { name: "MongoDB",       color: C.tools },
+      { name: "Power BI",      color: C.tools },
+      { name: "Jupyter",       color: C.tools },
     ],
   },
   {
     category: "Research Methods",
     icon: "FlaskConical",
     items: [
-      { name: "Experimental Design",    color: T.bgreen },
-      { name: "Benchmarking",           color: T.cyan },
-      { name: "Statistical Evaluation", color: T.byellow },
-      { name: "Distribution Analysis",  color: T.bmagenta },
+      { name: "Experimental Design",        color: C.methods },
+      { name: "Benchmarking & Evaluation",  color: C.methods },
+      { name: "Statistical Analysis",       color: C.methods },
+      { name: "Distribution Analysis",      color: C.methods },
+      { name: "Token Probability Analysis", color: C.methods },
+      { name: "Prompt Engineering",         color: C.methods },
+      { name: "RLHF / RLAIF",               color: C.methods },
+      { name: "Fine-tuning (QLoRA / SFT)",  color: C.methods },
+      { name: "Ablation Studies",           color: C.methods },
+      { name: "Human-subject Study Design", color: C.methods },
     ],
   },
 ];

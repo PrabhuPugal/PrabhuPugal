@@ -1,50 +1,42 @@
-export const travelDestinations = [
-  {
-    id: 1,
-    city: "Los Angeles",
-    country: "USA",
-    note: "Home base — studying at USC, exploring SoCal.",
-    image: null,
-    emoji: "🌴",
-  },
-  {
-    id: 2,
-    city: "San Francisco",
-    country: "USA",
-    note: "Tech capital vibes, Golden Gate, and the bay.",
-    image: null,
-    emoji: "🌉",
-  },
-  {
-    id: 3,
-    city: "Coimbatore",
-    country: "India",
-    note: "The city that shaped me — 5 years at CIT.",
-    image: null,
-    emoji: "🏙️",
-  },
-  {
-    id: 4,
-    city: "Chennai",
-    country: "India",
-    note: "The cultural heart of Tamil Nadu.",
-    image: null,
-    emoji: "🌊",
-  },
-  {
-    id: 5,
-    city: "Ooty",
-    country: "India",
-    note: "The Nilgiri hills — misty mornings and tea estates.",
-    image: null,
-    emoji: "🌿",
-  },
-  {
-    id: 6,
-    city: "Las Vegas",
-    country: "USA",
-    note: "Neon lights, desert sunsets, and the Strip.",
-    image: null,
-    emoji: "🎰",
-  },
+// States visited — must match the state name in the US atlas GeoJSON
+export const visitedStates = [
+  "California",
+  "Arizona",
+  "Georgia",
+  "Illinois",
+  "Florida",
+  "Nevada",
+  "Missouri",
+  "Tennessee",
+];
+
+// Cities visited — coordinates: [longitude, latitude]
+export const visitedCities = [
+  // California
+  { name: "Los Angeles",  state: "CA", coordinates: [-118.2437, 34.0522], isHome: true },
+
+  // Arizona
+  { name: "Phoenix",      state: "AZ", coordinates: [-112.0740, 33.4484] },
+  { name: "Sedona",       state: "AZ", coordinates: [-111.7650, 34.8697] },
+
+  // Florida
+  { name: "Orlando",      state: "FL", coordinates: [ -81.3792, 28.5383] },
+  { name: "Jacksonville", state: "FL", coordinates: [ -81.6557, 30.3322] },
+  { name: "Daytona",      state: "FL", coordinates: [ -81.0228, 29.2108] },
+
+  // Georgia
+  { name: "Atlanta",      state: "GA", coordinates: [ -84.3880, 33.7490] },
+
+  // Illinois
+  { name: "Chicago",      state: "IL", coordinates: [ -87.6298, 41.8781] },
+  { name: "Champaign",    state: "IL", coordinates: [ -88.2434, 40.1164] },
+
+  // Nevada
+  { name: "Las Vegas",    state: "NV", coordinates: [-115.1398, 36.1699] },
+
+  // Missouri
+  { name: "Kansas City",  state: "MO", coordinates: [ -94.5786, 39.0997] },
+
+  // Tennessee
+  { name: "Nashville",    state: "TN", coordinates: [ -86.7816, 36.1627] },
 ];

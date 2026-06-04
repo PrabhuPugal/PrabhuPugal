@@ -18,7 +18,7 @@ export default function Navbar({ sections, onSelectSection }) {
     <nav className={styles.nav}>
       <div className={styles.inner}>
         <button type="button" className={styles.logo} onClick={handleLogoClick}>
-          pb
+          pb <img src="/pbj.png" alt="pbj" className={styles.logoEmoji} />
         </button>
 
         <ul className={styles.links}>

@@ -7,18 +7,21 @@ const education = [
     id: 1,
     degree: "Master of Science in Computer Science",
     school: "University of Southern California",
+    logo: "/usc.png",
+    logoRaw: true,
     location: "Los Angeles, CA",
     period: "Jan 2026 – May 2027 (Expected)",
     courses: [
       "Applied Natural Language Processing",
       "Deep Learning and its Applications",
       "Statistical Machine Learning",
+      "Information Retrieval Systems",
     ],
     focus: [
-      "Machine Learning Systems",
-      "Deep Learning Architectures",
-      "Generative AI",
-      "Representation Learning",
+      "Natural Language Processing",
+      "LLM Systems & Reasoning",
+      "AI Safety & Benchmarking",
+      "Cognitive Architectures",
     ],
     current: true,
   },
@@ -26,15 +29,22 @@ const education = [
     id: 2,
     degree: "Master of Science in Software Systems",
     school: "Coimbatore Institute of Technology",
+    logo: "/cit.png",
+    logoRaw: true,
     location: "Tamil Nadu, India",
     period: "Sep 2020 – May 2025",
     courses: [
-      "Advanced Data Structures & Algorithms",
       "Artificial Intelligence",
+      "Machine Learning",
       "Operating Systems",
       "Computer Networks",
     ],
-    focus: [],
+    focus: [
+      "Theoretical Machine Learning",
+      "AI Agentic Simulation",
+      "Generative AI",
+      "LLM-Augmented IoT Systems",
+    ],
     current: false,
   },
 ];
@@ -46,7 +56,6 @@ export default function Education() {
         <SectionReveal>
           <div className="section-header">
             <span className="section-label">05 / education</span>
-            <h2 className="section-title">Education</h2>
           </div>
         </SectionReveal>
 
@@ -56,11 +65,20 @@ export default function Education() {
               <div className={styles.card}>
                 {edu.current && <div className={styles.currentBar} />}
                 <div className={styles.cardHeader}>
-                  <GraduationCap size={22} className={styles.icon} />
-                  <div>
-                    <h3 className={styles.degree}>{edu.degree}</h3>
-                    <p className={styles.school}>{edu.school}</p>
+                  <div className={styles.cardHeaderLeft}>
+                    <GraduationCap size={22} className={styles.icon} />
+                    <div>
+                      <h3 className={styles.degree}>{edu.degree}</h3>
+                      <p className={styles.school}>{edu.school}</p>
+                    </div>
                   </div>
+                  {edu.logo && (
+                    <img
+                      src={edu.logo}
+                      alt={edu.school}
+                      className={`${styles.schoolLogo} ${edu.logoRaw ? styles.schoolLogoRaw : ""}`}
+                    />
+                  )}
                 </div>
 
                 <div className={styles.details}>

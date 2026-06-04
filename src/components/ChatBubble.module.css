@@ -10,9 +10,15 @@
   gap: 0.6rem;
 }
 
+@media (max-width: 480px) {
+  .wrap {
+    right: 0.75rem;
+  }
+}
+
 /* Chat panel */
 .panel {
-  width: 380px;
+  width: min(380px, calc(100vw - 2rem));
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);

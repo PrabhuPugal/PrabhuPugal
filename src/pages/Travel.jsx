@@ -14,7 +14,6 @@ export default function Travel() {
         <SectionReveal>
           <div className="section-header">
             <span className="section-label">06 / travel</span>
-            <h2 className="section-title">Places & Travel</h2>
             <p className={styles.subtitle}>
               Places I've called home, visited, and wandered through.
             </p>

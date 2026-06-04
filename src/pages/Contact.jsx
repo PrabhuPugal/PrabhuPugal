@@ -27,7 +27,6 @@ export default function Contact() {
         <SectionReveal>
           <div className="section-header">
             <span className="section-label">07 / contact</span>
-            <h2 className="section-title">Get in Touch</h2>
           </div>
         </SectionReveal>
 

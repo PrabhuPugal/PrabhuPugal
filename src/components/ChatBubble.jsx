@@ -5,32 +5,32 @@ import styles from "./ChatBubble.module.css";
 // Keyword fallback used when API is unavailable (local dev without vercel dev)
 const pbReplies = [
   { keys: ["research", "cogrouter", "cog", "cogspan", "neurips", "paper"],
-    reply: "Building CogSpan — teaching LLMs to route reasoning like a human brain. Going well, 3 caffeine levels above optimal." },
+    reply: "pb is working on CogSpan at the HUMANS Lab — extending CogRouter to route LLM reasoning across agentic and mathematical tasks using cognitive science principles." },
   { keys: ["hire", "job", "intern", "opportunity", "work", "recruit"],
-    reply: "Currently deployed at USC ISI. Available for new inference runs from Summer 2027. Low latency guaranteed." },
+    reply: "pb is currently a Graduate Researcher at USC and open to opportunities from Summer 2027. Feel free to reach out via LinkedIn or email." },
   { keys: ["usc", "trojan", "la", "los angeles", "california"],
-    reply: "Fight on ✌️. Yes I owe them tuition. No I do not regret it. Mostly." },
+    reply: "pb is an MS Computer Science student at the University of Southern California in Los Angeles, graduating May 2027." },
   { keys: ["llm", "gpt", "claude", "ai", "model", "transformer", "bert"],
-    reply: "LLMs are just vibes with matrix multiplication. Very expensive, surprisingly effective vibes." },
+    reply: "pb's research focuses on LLM reasoning, cognitive routing, behavioral analysis of language models, and AI safety benchmarking." },
   { keys: ["travel", "food", "eat", "trip", "place"],
-    reply: "Context window is full of travel memories. Navigate to /photos for the full rollout." },
+    reply: "pb enjoys exploring new places and trying new food. Check out the Photos section for shots taken along the way." },
   { keys: ["sleep", "tired", "rest", "nap", "bed"],
-    reply: "sleep() not implemented. See also: coffee.py, deadlines.json, advisor_emails.txt." },
+    reply: "pb keeps late hours in the lab — occupational hazard of running experiments that always need one more epoch." },
   { keys: ["loss", "train", "gradient", "epoch", "overfit", "converge"],
-    reply: "Skill issue. Also check your learning rate. Also cry. Then lower the lr." },
+    reply: "pb works on LLM training, fine-tuning with QLoRA/SFT, and evaluation — so yes, loss curves are a daily concern." },
   { keys: ["gpu", "cuda", "vram", "memory", "oom"],
-    reply: "Have you tried smaller batch size? No? Bigger GPU? Also valid." },
+    reply: "pb runs experiments on HPC clusters using Slurm and Apptainer — large-scale GPU compute is part of the workflow." },
   { keys: ["hello", "hi", "hey", "sup", "yo"],
-    reply: "<|im_start|>assistant — hey! ask me anything. I have opinions." },
+    reply: "i'm pb-mini — ask me anything about pb!" },
   { keys: ["name", "who", "you", "pb", "prabhu"],
-    reply: "I'm pb — Prabhu Pugalenthi. Grad student, researcher, professional loss-curve-watcher." },
+    reply: "pb is Prabhu Pugalenthi — MS CS student at USC and Graduate Researcher at the HUMANS Lab, working on LLM reasoning and cognitive AI systems." },
   { keys: ["phd", "masters", "degree", "grad", "school"],
-    reply: "MS CS @ USC. Officially: delaying unemployment. Unofficially: having the time of my life." },
+    reply: "pb holds a 5-year integrated MS in Software Systems from CIT, India, and is currently pursuing an MS in Computer Science at USC." },
   { keys: ["hobby", "fun", "free", "outside", "weekend"],
-    reply: "Travelling, trying new food, and occasionally touching grass between training runs." },
+    reply: "Outside of research, pb enjoys travelling, trying new food, competitive gaming, and story-mode games." },
 ];
 
-const defaultFallback = "Hmm, high perplexity on that one. Try asking about research, LLMs, travel, or my sleep schedule.";
+const defaultFallback = "I don't have a specific answer for that — try asking about pb's research, experience, education, or background.";
 
 function getFallbackReply(input) {
   const lower = input.toLowerCase();

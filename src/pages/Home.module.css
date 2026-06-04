@@ -10,7 +10,7 @@
 .inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 3rem 1.25rem;
   display: grid;
   grid-template-columns: 280px 1fr 360px;
   gap: 3rem;
@@ -87,6 +87,16 @@
   max-width: 480px;
 }
 
+.bioReveal {
+  display: block;
+  animation: bioFadeIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes bioFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .ctas {
   display: flex;
   gap: 0.75rem;
@@ -127,6 +137,69 @@
 .btnSecondary:hover {
   border-color: var(--text-muted);
   color: var(--text);
+}
+
+.btnResume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all var(--transition);
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-2);
+  position: relative;
+}
+
+.btnResume:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+/* Tooltip */
+.btnResume::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.92);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Tooltip arrow */
+.btnResume::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.btnResume:hover::after,
+.btnResume:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }
 
 .socials {
@@ -355,7 +428,9 @@
     padding: 2rem 1.5rem;
   }
 
+  /* Un-stick the photo column so it doesn't float over content while scrolling */
   .photoCol {
+    position: static;
     justify-content: flex-start;
   }
 
@@ -368,6 +443,15 @@
     font-size: clamp(1.8rem, 8vw, 3rem);
   }
 
+  .content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .bio {
+    max-width: 100%;
+  }
+
   .decoration {
     align-items: stretch;
   }
@@ -377,6 +461,71 @@
   }
 
   .scrollHint {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    justify-content: flex-start;
+  }
+
+  .inner {
+    padding: 1.5rem 1rem;
+    gap: 1.25rem;
+    /* Prevent any child from punching outside the viewport */
+    overflow-x: hidden;
+  }
+
+  .photoCol {
+    position: static;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 100%;
+    /* Keep everything left-aligned like desktop, but constrained */
+    align-items: flex-start;
+  }
+
+  .name {
+    font-size: clamp(1.5rem, 9vw, 2.2rem);
+    word-break: break-word;
+  }
+
+  .role {
+    font-size: 0.82rem;
+    word-break: break-word;
+  }
+
+  .bio {
+    font-size: 0.9rem;
+    max-width: 100%;
+  }
+
+  .ctas {
+    gap: 0.5rem;
+  }
+
+  .btnPrimary,
+  .btnSecondary,
+  .btnResume {
+    font-size: 0.76rem;
+    padding: 0.5rem 0.9rem;
+  }
+
+  .socials {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  /* Hide the LLM inference card on small phones */
+  .decoration {
     display: none;
   }
 }

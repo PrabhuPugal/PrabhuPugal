@@ -16,7 +16,6 @@ export default function Projects() {
         <SectionReveal>
           <div className="section-header">
             <span className="section-label">04 / projects</span>
-            <h2 className="section-title">Projects</h2>
           </div>
         </SectionReveal>
 

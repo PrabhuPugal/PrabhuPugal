@@ -123,3 +123,31 @@
   color: var(--text-faint);
   font-size: 0.8rem;
 }
+
+@media (max-width: 480px) {
+  .cardHeader {
+    padding: 1rem 1rem;
+  }
+
+  .tags {
+    padding: 0 1rem 0.85rem;
+  }
+
+  .abstract {
+    padding: 1rem 1rem 0;
+    font-size: 0.85rem;
+  }
+
+  .highlights {
+    padding: 0.85rem 1rem 1.25rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .cardDetails {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+}

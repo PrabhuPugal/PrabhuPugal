@@ -1,12 +1,15 @@
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 3fr 2fr;
+  gap: 3rem;
   align-items: start;
 }
 
 .bio {
   font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .bio p {
@@ -19,6 +22,42 @@
   font-weight: 700;
 }
 
+/* Opening line — slightly larger, full text color */
+.intro {
+  font-size: 1.05rem !important;
+  color: var(--text) !important;
+  font-weight: 500;
+}
+
+/* Fun fact block */
+.funFact {
+  margin-top: 0.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border-2);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+}
+
+.funFactLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 0.5rem;
+}
+
+.funFactText {
+  font-size: 0.88rem !important;
+  color: var(--text-muted) !important;
+  line-height: 1.75 !important;
+  margin: 0;
+}
+
 .skills {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -29,7 +68,7 @@
 .skillsTitle {
   font-family: var(--font-head);
   font-size: 1.1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.1rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border);
 }
@@ -43,56 +82,214 @@
 .skillGroup {}
 
 .groupHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0;
+  padding: 0.28rem 0;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.skillGroup:first-child .groupHeader {
+  border-top: none;
+}
+
+.groupHeader:hover {
+  opacity: 0.75;
+}
+
+.groupHeaderLeft {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  margin-bottom: 0.5rem;
 }
 
 .groupIcon {
-  color: var(--text-muted);
+  color: var(--text-faint);
+  flex-shrink: 0;
 }
 
 .groupName {
   font-family: var(--font-mono);
-  font-size: 0.73rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.chevron {
   color: var(--text-faint);
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+}
+
+.chevronCollapsed {
+  transform: rotate(-90deg);
+}
+
+/* Smooth accordion open/close */
+.badgesWrap {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.25s ease, opacity 0.2s ease;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.badgesHidden {
+  grid-template-rows: 0fr;
+  opacity: 0;
 }
 
 .badges {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+  padding: 0.35rem 0 0.4rem;
+  min-height: 0;
 }
 
 .badge {
   font-family: var(--font-mono);
   font-size: 0.73rem;
   padding: 0.2rem 0.55rem;
-  border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  color: color-mix(in srgb, var(--brand) 80%, var(--text-muted));
-  background: color-mix(in srgb, var(--brand) 6%, var(--bg));
-  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  color: var(--text-muted);
+  background: transparent;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
 
 .badge:hover {
-  border-color: color-mix(in srgb, var(--brand) 70%, transparent);
-  color: var(--brand);
-  background: color-mix(in srgb, var(--brand) 12%, var(--bg));
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
 }
 
-[data-theme="dark"] .badge {
-  background: color-mix(in srgb, var(--brand) 18%, var(--bg));
-  border-color: color-mix(in srgb, var(--brand) 50%, transparent);
-  color: var(--brand);
+/* Right column — stacks Skills, Currently, Reading vertically */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-[data-theme="dark"] .badge:hover {
-  background: color-mix(in srgb, var(--brand) 28%, var(--bg));
-  border-color: var(--brand);
+/* Shared card title */
+.cardTitle {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+
+/* ── Currently card ───────────────────────────────────── */
+.currentlyCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+}
+
+.currentlyList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.currentlyRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.currentlyIcon {
+  color: var(--text-faint);
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+.currentlyKey {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 0.1rem;
+}
+
+.currentlyVal {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ── Currently Reading card ───────────────────────────── */
+.readingCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+}
+
+.readingList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.readingItem {
+  display: block;
+  padding: 0.6rem 0;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+a.readingItem:hover {
+  opacity: 0.75;
+}
+
+.readingDivider {
+  border-top: 1px solid var(--border);
+}
+
+.readingType {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.1rem 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.readingName {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+}
+
+.readingMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-faint);
 }
 
 @media (max-width: 768px) {

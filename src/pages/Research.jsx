@@ -15,7 +15,6 @@ export default function Research() {
         <SectionReveal>
           <div className="section-header">
             <span className="section-label">03 / research</span>
-            <h2 className="section-title">Research</h2>
           </div>
         </SectionReveal>
 

@@ -5,8 +5,8 @@ import TypewriterText from "../components/TypewriterText";
 import { contactInfo } from "../data/contact";
 import styles from "./Home.module.css";
 
-const primaryRole = "Graduate Research Assistant @ USC";
-const bioText = "MS Computer Science student at USC, specializing in ML Systems and Generative AI. Currently a Graduate Research Assistant working on LLM reasoning, cognitive routing, and AI safety benchmarking.";
+const primaryRole = "Graduate Researcher @ USC HUMANS Lab";
+const bioText = "MS Computer Science student at USC, specializing in Natural Language Processing and ML Systems. Graduate Researcher at the HUMANS Lab, building CogSpan to teach LLMs to route reasoning like a human brain by triggering psychological traits in model behavior. My work spans LLM reasoning budgeting, cognitive routing, and AI safety benchmarking.";
 
 const snapshots = [
   {
@@ -250,7 +250,7 @@ export default function Home({ onSelectSection }) {
 
           <p className={styles.bio}>
             {roleDone && (
-              <span style={{ animation: "fadeUp 0.5s ease both" }}>
+              <span className={styles.bioReveal}>
                 {bioText}
               </span>
             )}
@@ -272,6 +272,14 @@ export default function Home({ onSelectSection }) {
             >
               See Projects <ArrowRight size={16} />
             </button>
+            <a
+              href="/Prabhu Pugalenthi Resume.pdf"
+              download
+              className={styles.btnResume}
+              data-tooltip="Download my latest resume as a PDF"
+            >
+              Resume ↓
+            </a>
           </div>
           )}
 

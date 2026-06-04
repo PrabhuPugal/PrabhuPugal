@@ -14,7 +14,6 @@ export default function Experience() {
         <SectionReveal>
           <div className="section-header">
             <span className="section-label">02 / experience</span>
-            <h2 className="section-title">Work Experience</h2>
           </div>
         </SectionReveal>
 

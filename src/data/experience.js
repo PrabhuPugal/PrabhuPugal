@@ -1,7 +1,7 @@
 export const experiences = [
   {
     id: 1,
-    role: "Graduate Research Assistant",
+    role: "Graduate Researcher",
     company: "University of Southern California",
     location: "Los Angeles, CA",
     period: "Feb 2026 – Present",

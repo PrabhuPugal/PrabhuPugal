@@ -20,7 +20,7 @@ export default function Lightbox({ item, onClose }) {
         onClick={onClose}
       >
         <motion.div
-          className={styles.modal}
+          className={`${styles.modal} ${item.orientation === "portrait" ? styles.portraitModal : styles.landscapeModal}`}
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.92, y: 20 }}
