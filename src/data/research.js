@@ -1,6 +1,7 @@
 export const researchProjects = [
   {
     id: 1,
+    slug: "cogrouter-safety-benchmarking",
     title: "CogRouter: LLM Safety & Trustworthiness Benchmarking",
     period: "Apr 2026 – Present",
     supervisor: "Prof. Emilio Ferrara, USC ISI",
@@ -13,9 +14,13 @@ export const researchProjects = [
       "Extended to OS-HARM safety suite — measuring ASR and TSR",
       "Patched OSWorld routing layer for local vLLM-served models",
     ],
+    coverImage: null,
+    images: [],
+    body: [],
   },
   {
     id: 2,
+    slug: "reasoning-economics",
     title: "Reasoning Economics Environment for LLMs",
     period: "Jan 2026 – Apr 2026",
     supervisor: null,
@@ -28,9 +33,13 @@ export const researchProjects = [
       "Benchmarked against uniform, greedy, and oracle baselines",
       "Reward functions measuring accuracy, budget utilization, trajectory",
     ],
+    coverImage: null,
+    images: [],
+    body: [],
   },
   {
     id: 3,
+    slug: "llm-survey-simulation",
     title: "LLM-Based Social Survey Simulation",
     period: "Feb 2026 – Apr 2026",
     supervisor: null,
@@ -43,5 +52,8 @@ export const researchProjects = [
       "Pilot-conditioned few-shot prompting for base-rate priors",
       "Reproducible pipelines for large-scale simulation & analysis",
     ],
+    coverImage: null,
+    images: [],
+    body: [],
   },
 ];

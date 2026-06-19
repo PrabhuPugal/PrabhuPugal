@@ -1,9 +1,11 @@
 export const projects = [
   {
     id: 1,
+    slug: "blood-glucose-forecasting",
     title: "Forecasting of Postprandial Blood Glucose",
     period: "Sept 2025 – Dec 2025",
     tags: ["Diffusion Models", "Time-Series ML", "Healthcare AI", "CGM", "PyTorch"],
+    summary: "Diffusion-based forecasting of postprandial blood glucose dynamics from CGM and contextual signals across a 200-minute post-meal horizon.",
     description:
       "Developed diffusion-based deep learning models for multivariate physiological time-series forecasting using CGM data and contextual signals (meals, insulin, activity). Designed preprocessing pipelines to align irregular clinical data, handle missing values, and encode temporal dependencies. Achieved accurate prediction of post-meal glucose dynamics over a 200-minute horizon.",
     highlights: [
@@ -14,12 +16,17 @@ export const projects = [
     ],
     github: null,
     live: null,
+    coverImage: null,
+    images: [],
+    body: [],
   },
   {
     id: 2,
+    slug: "drill-csgo-prediction",
     title: "DRILL: Competitive Outcome Prediction",
     period: "Aug 2025 – Dec 2025",
     tags: ["XGBoost", "CatBoost", "CS:GO", "ML", "Feature Engineering"],
+    summary: "Round-level win probability model for CS:GO using gradient-boosted trees on large-scale event data, achieving ROC-AUC ~0.87.",
     description:
       "Modeled round-level win probability in CS:GO using large-scale event-based gameplay data. Engineered high-dimensional features capturing game state (economy, player health, utility usage, positional context). Trained gradient-boosted models achieving strong predictive performance (ROC-AUC ~0.87). Evaluated probabilistic calibration using LogLoss, Brier score, and Expected Calibration Error (ECE).",
     highlights: [
@@ -30,12 +37,17 @@ export const projects = [
     ],
     github: null,
     live: null,
+    coverImage: null,
+    images: [],
+    body: [],
   },
   {
     id: 3,
+    slug: "log-analysis-triage",
     title: "Intelligent Log Analysis & Incident Triage System",
     period: "Apr 2025 – Sept 2025",
     tags: ["Python", "ML", "REST API", "Anomaly Detection", "Linux"],
+    summary: "Modular log ingestion and ML-assisted incident triage system for Linux environments, with anomaly detection exposed via REST APIs.",
     description:
       "Designed and implemented a modular log analysis system to ingest, normalize, and process large-scale application and system logs in Linux environments. Developed ML-assisted and rule-based methods to detect anomalies, recurring error patterns, and incident signatures across multiple log sources. Exposed analysis results via REST APIs to support debugging workflows.",
     highlights: [
@@ -46,5 +58,8 @@ export const projects = [
     ],
     github: null,
     live: null,
+    coverImage: null,
+    images: [],
+    body: [],
   },
 ];

@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Cpu, ChevronDown, ChevronUp, Calendar, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Cpu, Calendar, ExternalLink, ArrowRight } from "lucide-react";
 import { GithubIcon } from "../components/SocialIcons";
 import SectionReveal from "../components/SectionReveal";
 import ScrambleText from "../components/ScrambleText";
@@ -9,7 +8,7 @@ import { projects } from "../data/projects";
 import styles from "./Projects.module.css";
 
 export default function Projects() {
-  const [expanded, setExpanded] = useState(null);
+  const navigate = useNavigate();
 
   return (
     <section className="section">
@@ -23,65 +22,45 @@ export default function Projects() {
         <div className={styles.grid}>
           {projects.map((proj, i) => (
             <SectionReveal key={proj.id} delay={i * 0.1}>
-              <div data-shine className={`${styles.card} ${expanded === proj.id ? styles.cardOpen : ""}`}>
-                <div className={styles.cardTop}>
+              <div data-shine className={styles.card}>
+                {/* Header */}
+                <div className={styles.cardHeader}>
                   <Cpu size={16} className={styles.icon} />
                   <div className={styles.cardMeta}>
                     <h3 className={styles.title}>{proj.title}</h3>
-                    <span className={styles.period}>
-                      <Calendar size={12} /> {proj.period}
-                    </span>
+                    <span className={styles.period}><Calendar size={12} /> {proj.period}</span>
                   </div>
                 </div>
 
+                {/* Tags */}
                 <div className={styles.tags}>
                   {proj.tags.map((t) => <Tag key={t} label={t} />)}
                 </div>
 
-                <p className={styles.desc}>{proj.description}</p>
+                {/* 1-2 line summary */}
+                <p className={styles.summary}>{proj.summary}</p>
 
-                <button
-                  className={styles.toggleBtn}
-                  onClick={() => setExpanded(expanded === proj.id ? null : proj.id)}
-                >
-                  {expanded === proj.id ? (
-                    <><ChevronUp size={14} /> Less</>
-                  ) : (
-                    <><ChevronDown size={14} /> Key highlights</>
-                  )}
-                </button>
-
-                <AnimatePresence>
-                  {expanded === proj.id && (
-                    <motion.ul
-                      key="highlights"
-                      className={styles.highlights}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      {proj.highlights.map((h, j) => (
-                        <li key={j} className={styles.highlight}>{h}</li>
-                      ))}
-                    </motion.ul>
-                  )}
-                </AnimatePresence>
-
-                {(proj.github || proj.live) && (
+                {/* Footer: links + Read more */}
+                <div className={styles.footer}>
                   <div className={styles.links}>
                     {proj.github && (
                       <a href={proj.github} target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <GithubIcon size={14} /> Code
+                        <GithubIcon size={13} /> Code
                       </a>
                     )}
                     {proj.live && (
                       <a href={proj.live} target="_blank" rel="noopener noreferrer" className={styles.link}>
-                        <ExternalLink size={14} /> Live
+                        <ExternalLink size={13} /> Live
                       </a>
                     )}
                   </div>
-                )}
+                  <button
+                    className={styles.readMore}
+                    onClick={() => navigate(`/projects/${proj.slug}`)}
+                  >
+                    Read more <ArrowRight size={13} />
+                  </button>
+                </div>
               </div>
             </SectionReveal>
           ))}

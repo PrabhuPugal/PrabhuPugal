@@ -12,6 +12,7 @@ import Experience from "./pages/Experience";
 import Research from "./pages/Research";
 import Projects from "./pages/Projects";
 import Photos from "./pages/Photos";
+import PostDetail from "./pages/PostDetail";
 import "./styles/global.css";
 
 export const sections = [
@@ -53,6 +54,9 @@ function AppInner() {
                 }
               />
             ))}
+            <Route path="/experience/:slug" element={<div className="sectionPage"><PostDetail type="experience" /></div>} />
+            <Route path="/research/:slug"   element={<div className="sectionPage"><PostDetail type="research"   /></div>} />
+            <Route path="/projects/:slug"   element={<div className="sectionPage"><PostDetail type="projects"   /></div>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

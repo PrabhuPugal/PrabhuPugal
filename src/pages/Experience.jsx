@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Briefcase, ChevronDown, ChevronUp, Building2, MapPin, Calendar } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Briefcase, ChevronDown, Building2, MapPin, Calendar, ArrowRight } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
 import ScrambleText from "../components/ScrambleText";
 import { experiences } from "../data/experience";
@@ -8,6 +8,9 @@ import styles from "./Experience.module.css";
 
 export default function Experience() {
   const [expanded, setExpanded] = useState(null);
+  const navigate = useNavigate();
+
+  const toggle = (id) => setExpanded((prev) => (prev === id ? null : id));
 
   return (
     <section className="section">
@@ -19,15 +22,17 @@ export default function Experience() {
         </SectionReveal>
 
         <div className={styles.list}>
-          {experiences.map((exp, i) => (
-            <SectionReveal key={exp.id} delay={i * 0.08}>
-              <div data-shine className={`${styles.card} ${expanded === exp.id ? styles.cardOpen : ""}`}>
-                <button
-                  className={styles.cardHeader}
-                  onClick={() => setExpanded(expanded === exp.id ? null : exp.id)}
-                  aria-expanded={expanded === exp.id}
-                >
-                  <div className={styles.headerLeft}>
+          {experiences.map((exp, i) => {
+            const isOpen = expanded === exp.id;
+            return (
+              <SectionReveal key={exp.id} delay={i * 0.08}>
+                <div data-shine className={`${styles.card} ${isOpen ? styles.cardOpen : ""}`}>
+                  {/* Clickable header */}
+                  <button
+                    className={styles.cardHeader}
+                    onClick={() => toggle(exp.id)}
+                    aria-expanded={isOpen}
+                  >
                     <Briefcase size={16} className={styles.headerIcon} />
                     <div className={styles.headerMeta}>
                       <div className={styles.titleRow}>
@@ -35,44 +40,36 @@ export default function Experience() {
                         {exp.current && <span className={styles.currentBadge}>Present</span>}
                       </div>
                       <div className={styles.cardDetails}>
-                        <span className={styles.cardDetail}>
-                          <Building2 size={12} /> {exp.company}
-                        </span>
-                        <span className={styles.cardDetail}>
-                          <MapPin size={12} /> {exp.location}
-                        </span>
-                        <span className={styles.cardDetail}>
-                          <Calendar size={12} /> {exp.period}
-                        </span>
+                        <span className={styles.cardDetail}><Building2 size={12} /> {exp.company}</span>
+                        <span className={styles.cardDetail}><MapPin size={12} /> {exp.location}</span>
+                        <span className={styles.cardDetail}><Calendar size={12} /> {exp.period}</span>
+                      </div>
+                    </div>
+                    <ChevronDown size={16} className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`} />
+                  </button>
+
+                  {/* Expandable summary */}
+                  <div className={`${styles.expandWrap} ${isOpen ? styles.expandWrapOpen : ""}`}>
+                    <div className={styles.expandInner}>
+                      <div className={styles.summary}>
+                        <ul className={styles.summaryList}>
+                          {exp.bullets.slice(0, 2).map((b, j) => (
+                            <li key={j} className={styles.summaryItem}>{b}</li>
+                          ))}
+                        </ul>
+                        <button
+                          className={styles.readMore}
+                          onClick={(e) => { e.stopPropagation(); navigate(`/experience/${exp.slug}`); }}
+                        >
+                          Read more <ArrowRight size={13} />
+                        </button>
                       </div>
                     </div>
                   </div>
-                  <span className={styles.chevron}>
-                    {expanded === exp.id ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                  </span>
-                </button>
-
-                <AnimatePresence>
-                  {expanded === exp.id && (
-                    <motion.div
-                      key="body"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      className={styles.body}
-                    >
-                      <ul className={styles.bullets}>
-                        {exp.bullets.map((b, j) => (
-                          <li key={j} className={styles.bullet}>{b}</li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </SectionReveal>
-          ))}
+                </div>
+              </SectionReveal>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 export const experiences = [
   {
     id: 1,
+    slug: "usc-grad-researcher",
     role: "Graduate Researcher",
     company: "University of Southern California",
     location: "Los Angeles, CA",
@@ -13,9 +14,13 @@ export const experiences = [
       "Developing a cost-conditioned cognitive router retrained via GRPO with per-tool API cost signals to reduce token expenditure on expensive tool calls in web and agentic environments",
       "Evaluating framework generality across six benchmarks spanning two task domains: agentic (WebArena, GAIA, AssistantBench) and mathematical reasoning (MATH500, AIME24, GSM8K)",
     ],
+    coverImage: null,
+    images: [],
+    body: [],
   },
   {
     id: 2,
+    slug: "ey-data-analyst",
     role: "Data Analyst Intern",
     company: "Ernst & Young",
     location: "Tamil Nadu, India",
@@ -29,9 +34,13 @@ export const experiences = [
       "Automated data workflows using CI/CD pipelines for validation and reproducible reporting",
       "Documented data models, query logic, and reporting pipelines for maintainable analytics systems",
     ],
+    coverImage: null,
+    images: [],
+    body: [],
   },
   {
     id: 3,
+    slug: "ey-software-developer",
     role: "Software Developer Intern",
     company: "Ernst & Young",
     location: "Tamil Nadu, India",
@@ -43,5 +52,8 @@ export const experiences = [
       "Optimized model inference pipelines and implemented logging and monitoring for reliability",
       "Worked in collaborative engineering workflows using Git version control and code review practices",
     ],
+    coverImage: null,
+    images: [],
+    body: [],
   },
 ];

@@ -3,18 +3,18 @@
   min-height: calc(100vh - var(--nav-height));
   display: flex;
   align-items: center;
-  padding: 2rem 0.25rem;
+  padding: 2.5rem 2rem;
   width: 100%;
 }
 
 /* ── Fluid 3-column grid, fills available width ─────────────── */
 .threeCol {
   display: grid;
-  grid-template-columns: 1fr 1.6fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 2.5rem;
   align-items: start;
   width: 100%;
-  max-width: 1700px;
+  max-width: 1360px;
   margin: 0 auto;
 }
 
@@ -315,21 +315,59 @@ a.readingItem:hover { opacity: 0.75; }
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
-@media (max-width: 1200px) {
+
+/* Large laptop (1025–1280px) */
+@media (max-width: 1280px) {
+  .aboutSection { padding: 2rem 1.75rem; }
+  .threeCol { gap: 2rem; }
+}
+
+/* Medium laptop (861–1024px) */
+@media (max-width: 1024px) {
+  .aboutSection { padding: 2rem 1.25rem; }
   .threeCol {
-    grid-template-columns: 1fr 1.6fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 1.5rem;
   }
 }
 
-@media (max-width: 900px) {
+/* Tablet (601–860px): education | bio side-by-side, skills full-width below */
+@media (max-width: 860px) {
   .aboutSection {
     align-items: flex-start;
     padding: 2rem 1.25rem;
   }
   .threeCol {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  /* Skills column (3rd SectionReveal) spans both grid columns */
+  .threeCol > *:last-child { grid-column: 1 / -1; }
+  /* Lay out skills cards side by side */
+  .rightCol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  /* Fun fact spans full width of the skills row */
+  .funFact { grid-column: 1 / -1; }
+  .bio { padding-top: 0; }
+}
+
+/* Mobile (<601px): single column */
+@media (max-width: 600px) {
+  .aboutSection { padding: 1.75rem 1rem; }
+  .threeCol {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+  /* Reset the full-width override from tablet breakpoint */
+  .threeCol > *:last-child { grid-column: auto; }
+  .rightCol {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   .bio { padding-top: 0; }
 }

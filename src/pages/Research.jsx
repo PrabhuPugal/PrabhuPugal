@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { BookOpen, ChevronDown, ChevronUp, Calendar, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { BookOpen, ChevronDown, Calendar, User, ArrowRight } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
 import ScrambleText from "../components/ScrambleText";
 import Tag from "../components/Tag";
@@ -9,6 +9,9 @@ import styles from "./Research.module.css";
 
 export default function Research() {
   const [expanded, setExpanded] = useState(null);
+  const navigate = useNavigate();
+
+  const toggle = (id) => setExpanded((prev) => (prev === id ? null : id));
 
   return (
     <section className="section">
@@ -20,61 +23,53 @@ export default function Research() {
         </SectionReveal>
 
         <div className={styles.list}>
-          {researchProjects.map((proj, i) => (
-            <SectionReveal key={proj.id} delay={i * 0.1}>
-              <div data-shine className={`${styles.card} ${expanded === proj.id ? styles.cardOpen : ""}`}>
-                <button
-                  className={styles.cardHeader}
-                  onClick={() => setExpanded(expanded === proj.id ? null : proj.id)}
-                  aria-expanded={expanded === proj.id}
-                >
-                  <div className={styles.headerLeft}>
+          {researchProjects.map((proj, i) => {
+            const isOpen = expanded === proj.id;
+            return (
+              <SectionReveal key={proj.id} delay={i * 0.1}>
+                <div data-shine className={`${styles.card} ${isOpen ? styles.cardOpen : ""}`}>
+                  {/* Clickable header */}
+                  <button
+                    className={styles.cardHeader}
+                    onClick={() => toggle(proj.id)}
+                    aria-expanded={isOpen}
+                  >
                     <BookOpen size={16} className={styles.headerIcon} />
                     <div className={styles.headerMeta}>
                       <h3 className={styles.title}>{proj.title}</h3>
                       <div className={styles.cardDetails}>
-                        <span className={styles.cardDetail}>
-                          <Calendar size={12} /> {proj.period}
-                        </span>
+                        <span className={styles.cardDetail}><Calendar size={12} /> {proj.period}</span>
                         {proj.supervisor && (
-                          <span className={styles.cardDetail}>
-                            <User size={12} /> {proj.supervisor}
-                          </span>
+                          <span className={styles.cardDetail}><User size={12} /> {proj.supervisor}</span>
                         )}
                       </div>
                     </div>
+                    <ChevronDown size={16} className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`} />
+                  </button>
+
+                  {/* Tags — always visible */}
+                  <div className={styles.tags}>
+                    {proj.tags.map((t) => <Tag key={t} label={t} />)}
                   </div>
-                  <span className={styles.chevron}>
-                    {expanded === proj.id ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-                  </span>
-                </button>
 
-                <div className={styles.tags}>
-                  {proj.tags.map((t) => <Tag key={t} label={t} />)}
+                  {/* Expandable summary */}
+                  <div className={`${styles.expandWrap} ${isOpen ? styles.expandWrapOpen : ""}`}>
+                    <div className={styles.expandInner}>
+                      <div className={styles.summary}>
+                        <p className={styles.summaryText}>{proj.abstract}</p>
+                        <button
+                          className={styles.readMore}
+                          onClick={(e) => { e.stopPropagation(); navigate(`/research/${proj.slug}`); }}
+                        >
+                          Read more <ArrowRight size={13} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
-                <AnimatePresence>
-                  {expanded === proj.id && (
-                    <motion.div
-                      key="body"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      className={styles.body}
-                    >
-                      <p className={styles.abstract}>{proj.abstract}</p>
-                      <ul className={styles.highlights}>
-                        {proj.highlights.map((h, j) => (
-                          <li key={j} className={styles.highlight}>{h}</li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </SectionReveal>
-          ))}
+              </SectionReveal>
+            );
+          })}
         </div>
       </div>
     </section>

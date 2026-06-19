@@ -178,4 +178,9 @@
   .card {
     padding: 1.25rem;
   }
+  .schoolLogo,
+  .schoolLogoRaw {
+    width: 64px;
+    height: 64px;
+  }
 }
