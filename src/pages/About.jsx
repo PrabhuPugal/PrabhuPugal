@@ -36,7 +36,7 @@ const education = [
 ];
 
 export default function About() {
-  const [openEduId, setOpenEduId] = useState(1);
+  const [openEduId, setOpenEduId] = useState(null);
   const toggleEdu = (id) => setOpenEduId(prev => prev === id ? null : id);
 
   return (
