@@ -1,48 +1,149 @@
-/* ── Full-screen section, vertically centered ───────────────── */
-.aboutSection {
+/* ── Page shell ──────────────────────────────────────────────── */
+.page {
   min-height: calc(100vh - var(--nav-height));
-  display: flex;
-  align-items: center;
-  padding: 2.5rem 2rem;
+  padding: 2.5rem 2rem 5rem;
   width: 100%;
 }
 
-/* ── Fluid 3-column grid, fills available width ─────────────── */
-.threeCol {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  gap: 2.5rem;
-  align-items: start;
-  width: 100%;
+.inner {
   max-width: 1360px;
   margin: 0 auto;
-}
-
-/* ── Column base ─────────────────────────────────────────────── */
-.col {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 3rem;
 }
 
-.centerCol {
-  gap: 0;
+/* ── Zone 1: Bio + Education + Skills (left) + Photos (right) ── */
+.zone1 {
+  display: grid;
+  grid-template-columns: 1.35fr 320px;
+  gap: 3rem;
+  align-items: start;
 }
 
-/* ── Education column ────────────────────────────────────────── */
-.eduCol {
+/* ── Bio + Education + Skills left column ────────────────────── */
+.bioAndEdu {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  gap: 1.5rem;
+  min-height: 0;
 }
 
-/* Make entire card clickable */
+/* ── Education 2-col inside left col ─────────────────────────── */
+.eduStack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.eduCompact {
+  padding: 0.7rem 0.9rem !important;
+}
+
+/* ── Bio ─────────────────────────────────────────────────────── */
+.bio {
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.bio p {
+  color: var(--text-muted);
+  line-height: 1.9;
+  font-size: 0.97rem;
+}
+
+.bio strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.intro {
+  font-size: 1.1rem !important;
+  color: var(--text) !important;
+  font-weight: 500;
+  line-height: 1.55 !important;
+}
+
+.closing {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: var(--text-faint);
+}
+
+/* ── Photos (right column of zone1) ─────────────────────────── */
+.photoColRight {
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+  height: calc(100vh - var(--nav-height) - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.photoItem {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.stripSlot {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.stripPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photoCaption {
+  margin-top: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-style: italic;
+  color: var(--text-faint);
+  line-height: 1.4;
+}
+
+.photoCredit {
+  margin-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-faint);
+  opacity: 0.6;
+}
+
+.photoCredit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.photoCredit a:hover {
+  opacity: 1;
+}
+
+
 .eduCard {
   cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+  will-change: transform;
+}
+.eduCard:hover {
+  transform: perspective(600px) rotateX(4deg) translateY(-5px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.28), 0 6px 12px rgba(0,0,0,0.14) !important;
 }
 
-/* Education accordion toggle */
 .eduToggle {
   width: 100%;
   display: flex;
@@ -71,7 +172,13 @@
   flex-shrink: 0;
 }
 
-/* Collapsible body */
+.chevron {
+  color: var(--text-faint);
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+}
+.chevronCollapsed { transform: rotate(-90deg); }
+
 .eduBodyWrap {
   display: grid;
   grid-template-rows: 1fr;
@@ -79,182 +186,125 @@
   opacity: 1;
   overflow: hidden;
 }
-
 .eduBodyHidden {
   grid-template-rows: 0fr;
   opacity: 0;
 }
-
 .eduBody {
   min-height: 0;
   padding-top: 0.75rem;
 }
 
-/* ── Bio (center column) ─────────────────────────────────────── */
-.bio {
-  font-family: var(--font-body);
+/* ── Zone heading ────────────────────────────────────────────── */
+.zoneHeading {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 1.1rem;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding-top: 2.25rem;
-}
-
-.bio p {
-  color: var(--text-muted);
-  line-height: 1.85;
-}
-
-.bio strong {
-  color: var(--text);
-  font-weight: 700;
-}
-
-.intro {
-  font-size: 1.05rem !important;
-  color: var(--text) !important;
-  font-weight: 500;
-}
-
-/* ── Right column ────────────────────────────────────────────── */
-.rightCol {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Skills card */
-.skills {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.25rem;
-}
-
-.skillsTitle {
-  font-family: var(--font-head);
-  font-size: 1rem;
-  margin-bottom: 0.9rem;
-  padding-bottom: 0.6rem;
+  align-items: center;
+  gap: 0.4rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border);
 }
 
-.skillsGrid {
+/* ── Skills — full-width flat rows ───────────────────────────── */
+.skillsSection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem 1.25rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+.skillsSection:hover {
+  transform: perspective(1200px) rotateX(2deg) translateY(-4px) translateZ(0);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.25), 0 8px 16px rgba(0,0,0,0.1);
+  border-color: var(--border-2);
+}
+
+.skillsRows {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
 }
 
-.skillGroup {}
-
-.groupHeader {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.4rem;
-  padding: 0.25rem 0;
-  background: none;
-  border: none;
-  border-top: 1px solid var(--border);
-  cursor: pointer;
-  transition: opacity var(--transition);
-}
-
-.skillGroup:first-child .groupHeader { border-top: none; }
-.groupHeader:hover { opacity: 0.75; }
-
-.groupHeaderLeft {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.groupIcon { color: var(--text-faint); flex-shrink: 0; }
-
-.groupName {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.chevron {
-  color: var(--text-faint);
-  flex-shrink: 0;
-  transition: transform 0.22s ease;
-}
-
-.chevronCollapsed { transform: rotate(-90deg); }
-
-.badgesWrap {
+.skillRow {
   display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows 0.25s ease, opacity 0.2s ease;
-  opacity: 1;
-  overflow: hidden;
+  grid-template-columns: 160px 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--border);
+}
+.skillRow:first-child { border-top: none; }
+
+.skillCatLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  padding-top: 0.2rem;
+  flex-shrink: 0;
 }
 
-.badgesHidden {
-  grid-template-rows: 0fr;
-  opacity: 0;
-}
+.skillIcon { flex-shrink: 0; }
 
 .badges {
   display: flex;
   flex-wrap: wrap;
   gap: 0.3rem;
-  padding: 0.3rem 0 0.35rem;
-  min-height: 0;
 }
 
 .badge {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  padding: 0.18rem 0.5rem;
+  padding: 0.18rem 0.55rem;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text-muted);
   background: transparent;
   transition: background var(--transition), border-color var(--transition), color var(--transition);
 }
-
 .badge:hover {
   background: var(--text);
   border-color: var(--text);
   color: var(--bg);
 }
 
-/* Papers card */
-.readingCard {
+/* ── Papers — two cards side by side ────────────────────────── */
+.papersSection {}
+
+.papersGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.paperCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 1.25rem;
-}
-
-.cardTitle {
-  font-family: var(--font-head);
-  font-size: 1rem;
-  margin-bottom: 0.9rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-}
-
-.readingList { display: flex; flex-direction: column; }
-
-.readingItem {
-  display: block;
-  padding: 0.55rem 0;
+  padding: 1.25rem 1.4rem;
   text-decoration: none;
-  transition: opacity var(--transition);
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
 }
-
-a.readingItem:hover { opacity: 0.75; }
-
-.readingDivider { border-top: 1px solid var(--border); }
+.paperCard:hover {
+  transform: perspective(600px) rotateX(4deg) translateY(-5px);
+  border-color: var(--border-2);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.28), 0 6px 12px rgba(0,0,0,0.14);
+}
 
 .readingType {
   display: inline-block;
@@ -266,15 +316,15 @@ a.readingItem:hover { opacity: 0.75; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.08rem 0.35rem;
-  margin-bottom: 0.3rem;
+  width: fit-content;
 }
 
 .readingName {
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.45;
-  margin-bottom: 0.2rem;
+  line-height: 1.5;
+  flex: 1;
 }
 
 .readingMeta {
@@ -284,90 +334,29 @@ a.readingItem:hover { opacity: 0.75; }
   font-family: var(--font-mono);
   font-size: 0.62rem;
   color: var(--text-faint);
-}
-
-/* Fun Fact card */
-.funFact {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--border-2);
-  border-radius: var(--radius-md);
-  padding: 0.9rem 1rem;
-}
-
-.funFactLabel {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  margin-bottom: 0.45rem;
-}
-
-.funFactText {
-  font-size: 0.85rem !important;
-  color: var(--text-muted) !important;
-  line-height: 1.7 !important;
-  margin: 0;
+  margin-top: 0.25rem;
 }
 
 /* ── Responsive ──────────────────────────────────────────────── */
-
-/* Large laptop (1025–1280px) */
-@media (max-width: 1280px) {
-  .aboutSection { padding: 2rem 1.75rem; }
-  .threeCol { gap: 2rem; }
+@media (max-width: 1100px) {
+  .zone1 { grid-template-columns: 1fr 280px; gap: 2rem; }
 }
 
-/* Medium laptop (861–1024px) */
-@media (max-width: 1024px) {
-  .aboutSection { padding: 2rem 1.25rem; }
-  .threeCol {
-    grid-template-columns: 1fr 1.4fr 1fr;
-    gap: 1.5rem;
-  }
-}
-
-/* Tablet (601–860px): education | bio side-by-side, skills full-width below */
 @media (max-width: 860px) {
-  .aboutSection {
-    align-items: flex-start;
-    padding: 2rem 1.25rem;
-  }
-  .threeCol {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-  /* Skills column (3rd SectionReveal) spans both grid columns */
-  .threeCol > *:last-child { grid-column: 1 / -1; }
-  /* Lay out skills cards side by side */
-  .rightCol {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    align-items: start;
-  }
-  /* Fun fact spans full width of the skills row */
-  .funFact { grid-column: 1 / -1; }
-  .bio { padding-top: 0; }
+  .page { padding: 2rem 1.25rem 4rem; }
+  .zone1 { grid-template-columns: 1fr; gap: 2rem; align-items: start; }
+  .stripSlot { aspect-ratio: 2625 / 3500; flex: unset; }
+  .skillsSection { padding: 1.25rem 1.25rem 1rem; }
+  .skillRow { grid-template-columns: 160px 1fr; }
 }
 
-/* Mobile (<601px): single column */
 @media (max-width: 600px) {
-  .aboutSection { padding: 1.75rem 1rem; }
-  .threeCol {
+  .page { padding: 1.75rem 1rem 3rem; }
+  .inner { gap: 2rem; }
+  .skillRow {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 0.5rem;
+    padding: 0.9rem 0;
   }
-  /* Reset the full-width override from tablet breakpoint */
-  .threeCol > *:last-child { grid-column: auto; }
-  .rightCol {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .bio { padding-top: 0; }
+  .papersGrid { grid-template-columns: 1fr; }
 }

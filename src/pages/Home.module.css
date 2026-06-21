@@ -337,7 +337,7 @@
 
 .llmToken {
   display: grid;
-  grid-template-columns: 9rem 1fr 2.5rem;
+  grid-template-columns: auto 1fr 2.5rem;
   align-items: center;
   gap: 0.5rem;
 }
@@ -346,8 +346,6 @@
   font-size: 0.72rem;
   color: var(--text-muted);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .tokenBarTrack {
@@ -360,12 +358,12 @@
 .tokenBarFill {
   height: 100%;
   border-radius: 2px;
-  width: var(--bar-w);
+  width: 100%;
 }
 
 @keyframes barGrow {
   from { width: 0%; }
-  to   { width: var(--bar-w); }
+  to   { width: 100%; }
 }
 
 .tokenBarFillAnimate {

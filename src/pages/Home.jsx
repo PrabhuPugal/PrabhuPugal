@@ -7,11 +7,12 @@ import { contactInfo } from "../data/contact";
 import styles from "./Home.module.css";
 
 const primaryRole = "Graduate Researcher @ USC HUMANS Lab";
-const bioText = "MS Computer Science student at USC, specializing in Natural Language Processing and ML Systems. Graduate Researcher at the HUMANS Lab, building CogSpan to teach LLMs to route reasoning like a human brain by triggering psychological traits in model behavior. My work spans LLM reasoning budgeting, cognitive routing, and AI safety benchmarking.";
+const bioText = "MS Computer Science student at USC specializing in Natural Language Processing, ML Systems, and LLM reasoning. Graduate Researcher at the HUMANS Lab, building CogSpan, a cognitive routing framework that teaches language models to allocate reasoning more efficiently across complex tasks. My work spans LLM reasoning budgeting, cognitive routing, psychologically inspired model behavior, and AI safety benchmarking.";
 
 const snapshots = [
   {
     prompt: "Why won't my loss converge?",
+    winner: 2,
     tokens: [
       { token: '"skill issue"',  prob: 0.64, color: "#25BC24" },
       { token: '"more epochs"',  prob: 0.18, color: "#33BBC8" },
@@ -28,6 +29,7 @@ const snapshots = [
   },
   {
     prompt: "Summarise my Masters in one sentence.",
+    winner: 3,
     tokens: [
       { token: '"delaying unemployment"', prob: 0.61, color: "#C23621" },
       { token: '"send help"',             prob: 0.20, color: "#D338D3" },
@@ -44,6 +46,7 @@ const snapshots = [
   },
   {
     prompt: "Why did the transformer cross the road?",
+    winner: 1,
     tokens: [
       { token: '"to self-attend"',      prob: 0.59, color: "#33BBC8" },
       { token: '"BERT dared it"',       prob: 0.21, color: "#ADAD27" },
@@ -60,6 +63,7 @@ const snapshots = [
   },
   {
     prompt: "My GPU is on fire. Literally.",
+    winner: 4,
     tokens: [
       { token: '"free hand warmer"', prob: 0.58, color: "#C23621" },
       { token: '"s\'mores time"',    prob: 0.22, color: "#ADAD27" },
@@ -107,7 +111,7 @@ function LLMCard() {
   // typewriter when output phase begins
   useEffect(() => {
     if (phase !== "output") return;
-    const target = snapshots[snap].tokens[0].token;
+    const target = snapshots[snap].tokens[snapshots[snap].winner].token;
     let i = 0;
     const id = setInterval(() => {
       i++;
