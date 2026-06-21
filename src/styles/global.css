@@ -3,8 +3,6 @@
    Typewriter Theme | Light + Dark Mode
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&display=swap');
-
 /* ── Design Tokens ─────────────────────────────────────────── */
 :root {
   /* Light mode — pearl white bg, greyish-black text */
