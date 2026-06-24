@@ -1,17 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Briefcase, ChevronDown, Building2, MapPin, Calendar, ArrowRight } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
 import ScrambleText from "../components/ScrambleText";
 import { experiences } from "../data/experience";
 import styles from "./Experience.module.css";
 
 export default function Experience() {
-  const [expanded, setExpanded] = useState(null);
-  const navigate = useNavigate();
-
-  const toggle = (id) => setExpanded((prev) => (prev === id ? null : id));
-
   return (
     <section className="section">
       <div className="container">
@@ -21,55 +13,40 @@ export default function Experience() {
           </div>
         </SectionReveal>
 
-        <div className={styles.list}>
-          {experiences.map((exp, i) => {
-            const isOpen = expanded === exp.id;
-            return (
-              <SectionReveal key={exp.id} delay={i * 0.08}>
-                <div data-shine className={`${styles.card} ${isOpen ? styles.cardOpen : ""}`}>
-                  {/* Clickable header */}
-                  <button
-                    className={styles.cardHeader}
-                    onClick={() => toggle(exp.id)}
-                    aria-expanded={isOpen}
-                  >
-                    <Briefcase size={16} className={styles.headerIcon} />
-                    <div className={styles.headerMeta}>
-                      <div className={styles.titleRow}>
-                        <h3 className={styles.title}>{exp.role}</h3>
-                        {exp.current && <span className={styles.currentBadge}>Present</span>}
-                      </div>
-                      <div className={styles.cardDetails}>
-                        <span className={styles.cardDetail}><Building2 size={12} /> {exp.company}</span>
-                        <span className={styles.cardDetail}><MapPin size={12} /> {exp.location}</span>
-                        <span className={styles.cardDetail}><Calendar size={12} /> {exp.period}</span>
-                      </div>
-                    </div>
-                    <ChevronDown size={16} className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`} />
-                  </button>
+        <div className={styles.timeline}>
+          {experiences.map((exp, i) => (
+            <SectionReveal key={exp.id} delay={i * 0.07}>
+              <div className={styles.timelineItem}>
 
-                  {/* Expandable summary */}
-                  <div className={`${styles.expandWrap} ${isOpen ? styles.expandWrapOpen : ""}`}>
-                    <div className={styles.expandInner}>
-                      <div className={styles.summary}>
-                        <ul className={styles.summaryList}>
-                          {exp.bullets.slice(0, 2).map((b, j) => (
-                            <li key={j} className={styles.summaryItem}>{b}</li>
-                          ))}
-                        </ul>
-                        <button
-                          className={styles.readMore}
-                          onClick={(e) => { e.stopPropagation(); navigate(`/experience/${exp.slug}`); }}
-                        >
-                          Read more <ArrowRight size={13} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                <div className={styles.track}>
+                  <div className={styles.dot} style={{ background: exp.color, boxShadow: exp.ring ? `0 0 0 2px ${exp.ring}` : "none" }} />
+                  {i < experiences.length - 1 && (() => {
+                    const next = experiences[i + 1];
+                    const bothEY = exp.ring && next.ring;
+                    const gradient = bothEY
+                      ? `linear-gradient(to bottom, ${exp.color}90, ${exp.ring}cc, ${next.color}90)`
+                      : `linear-gradient(to bottom, ${exp.color}90, ${next.color}90)`;
+                    return <div className={styles.line} style={{ background: gradient }} />;
+                  })()}
                 </div>
-              </SectionReveal>
-            );
-          })}
+
+                <div className={styles.entry}>
+                  <div className={styles.entryHead}>
+                    <span className={styles.role}>{exp.role}</span>
+                    {exp.current && <span className={styles.currentBadge}>Present</span>}
+                    <span className={styles.period}>{exp.period}</span>
+                  </div>
+                  <div className={styles.entryMeta}>{exp.company} · {exp.location}</div>
+                  <ul className={styles.bullets}>
+                    {exp.bullets.map((b, j) => (
+                      <li key={j} className={styles.bullet}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+
+              </div>
+            </SectionReveal>
+          ))}
         </div>
       </div>
     </section>

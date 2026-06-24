@@ -30,6 +30,21 @@ export function LinkedinIcon({ size = 20, className = "" }) {
   );
 }
 
+export function GoogleScholarIcon({ size = 20, className = "" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 10a8 8 0 0 1 7.162 3.44L24 9.5z" />
+    </svg>
+  );
+}
+
 export function InstagramIcon({ size = 20, className = "" }) {
   return (
     <svg

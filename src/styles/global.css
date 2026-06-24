@@ -162,6 +162,16 @@ code, pre {
   padding-bottom: var(--nav-height);
 }
 
+.siteFooter {
+  padding: 1.25rem 2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  text-align: center;
+}
+
 /* Full-height centering wrapper — one per route */
 .sectionPage {
   min-height: calc(100vh - var(--nav-height));

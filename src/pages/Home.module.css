@@ -230,6 +230,10 @@
   color: #0a66c2;
 }
 
+.scholar {
+  color: #4285f4;
+}
+
 .instagram {
   color: #e4405f;
 }
@@ -337,7 +341,7 @@
 
 .llmToken {
   display: grid;
-  grid-template-columns: auto 1fr 2.5rem;
+  grid-template-columns: 11.5rem 1fr 2.5rem;
   align-items: center;
   gap: 0.5rem;
 }
@@ -346,6 +350,20 @@
   font-size: 0.72rem;
   color: var(--text-muted);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.llmTokenWinner {
+  background: rgba(255,255,255,0.04);
+  border-radius: 3px;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
+
+.tokenNameWinner {
+  color: var(--text);
+  font-weight: 500;
 }
 
 .tokenBarTrack {
@@ -358,17 +376,18 @@
 .tokenBarFill {
   height: 100%;
   border-radius: 2px;
-  width: 100%;
+  width: var(--bar-w);
 }
 
 @keyframes barGrow {
   from { width: 0%; }
-  to   { width: 100%; }
+  to   { width: var(--bar-w); }
 }
 
 .tokenBarFillAnimate {
   height: 100%;
   border-radius: 2px;
+  width: var(--bar-w);
   animation: barGrow 0.5s ease both;
 }
 
@@ -418,6 +437,16 @@
   letter-spacing: 0.04em;
 }
 
+
+.copyright {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+  text-align: center;
+  padding: 1rem 2rem 2rem;
+  opacity: 0.6;
+}
 
 @media (max-width: 900px) {
   .inner {

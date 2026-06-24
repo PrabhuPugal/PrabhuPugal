@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { ArrowRight, Mail } from "lucide-react";
 import MagneticWrap from "../components/MagneticWrap";
-import { GithubIcon, InstagramIcon, LinkedinIcon } from "../components/SocialIcons";
+import { GithubIcon, InstagramIcon, LinkedinIcon, GoogleScholarIcon } from "../components/SocialIcons";
 import TypewriterText from "../components/TypewriterText";
 import { contactInfo } from "../data/contact";
 import styles from "./Home.module.css";
 
 const primaryRole = "Graduate Researcher @ USC HUMANS Lab";
-const bioText = "MS Computer Science student at USC specializing in Natural Language Processing, ML Systems, and LLM reasoning. Graduate Researcher at the HUMANS Lab, building CogSpan, a cognitive routing framework that teaches language models to allocate reasoning more efficiently across complex tasks. My work spans LLM reasoning budgeting, cognitive routing, psychologically inspired model behavior, and AI safety benchmarking.";
+const bioText = "MS computer science student at USC specializing in Inference-Time Compute Efficiency, Cognitive Routing Architectures, and LLM Behavioral Alignment. Graduate researcher at the HUMANS Lab, building CogSpan, a cognitive routing framework that teaches language models to allocate reasoning more efficiently across complex tasks. My work spans Token Budget Optimization, Adaptive Reasoning Allocation, Psychologically Grounded Model Behavior, and AI Safety Benchmarking.";
 
 const snapshots = [
   {
     prompt: "Why won't my loss converge?",
-    winner: 2,
+    winner: 3,
     tokens: [
       { token: '"skill issue"',  prob: 0.64, color: "#25BC24" },
       { token: '"more epochs"',  prob: 0.18, color: "#33BBC8" },
@@ -46,7 +46,7 @@ const snapshots = [
   },
   {
     prompt: "Why did the transformer cross the road?",
-    winner: 1,
+    winner: 0,
     tokens: [
       { token: '"to self-attend"',      prob: 0.59, color: "#33BBC8" },
       { token: '"BERT dared it"',       prob: 0.21, color: "#ADAD27" },
@@ -63,7 +63,7 @@ const snapshots = [
   },
   {
     prompt: "My GPU is on fire. Literally.",
-    winner: 4,
+    winner: 1,
     tokens: [
       { token: '"free hand warmer"', prob: 0.58, color: "#C23621" },
       { token: '"s\'mores time"',    prob: 0.22, color: "#ADAD27" },
@@ -146,9 +146,10 @@ function LLMCard() {
           <div className={`${styles.llmTokens} ${fading ? styles.fade : ""}`}>
             {tokens.map(({ token, prob, color }, i) => {
               const isOutput = phase === "output";
+              const isWinner = isOutput && i === snapshots[snap].winner;
               return (
-                <div key={token} className={styles.llmToken}>
-                  <span className={styles.tokenName}>{token}</span>
+                <div key={token} className={`${styles.llmToken} ${isWinner ? styles.llmTokenWinner : ""}`}>
+                  <span className={`${styles.tokenName} ${isWinner ? styles.tokenNameWinner : ""}`}>{token}</span>
                   <div className={styles.tokenBarTrack}>
                     <div
                       key={`${phase}-${token}`}
@@ -296,6 +297,15 @@ export default function Home({ onSelectSection }) {
 
           {bioDone && (<div className={styles.socials} style={{ animation: "fadeUp 0.4s ease 0.15s both" }}>
             <a
+              href={contactInfo.scholar}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.socialLink} ${styles.scholar}`}
+              aria-label="Google Scholar"
+            >
+              <GoogleScholarIcon size={20} />
+            </a>
+            <a
               href={contactInfo.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -314,6 +324,13 @@ export default function Home({ onSelectSection }) {
               <LinkedinIcon size={20} />
             </a>
             <a
+              href={`mailto:${contactInfo.personalEmail}`}
+              className={`${styles.socialLink} ${styles.email}`}
+              aria-label="Personal email"
+            >
+              <Mail size={20} />
+            </a>
+            <a
               href={contactInfo.instagram}
               target="_blank"
               rel="noopener noreferrer"
@@ -321,13 +338,6 @@ export default function Home({ onSelectSection }) {
               aria-label="Instagram"
             >
               <InstagramIcon size={20} />
-            </a>
-            <a
-              href={`mailto:${contactInfo.personalEmail}`}
-              className={`${styles.socialLink} ${styles.email}`}
-              aria-label="Personal email"
-            >
-              <Mail size={20} />
             </a>
           </div>
           )}

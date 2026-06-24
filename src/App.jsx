@@ -9,8 +9,7 @@ import GlobalEffects from "./components/GlobalEffects";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
-import Research from "./pages/Research";
-import Projects from "./pages/Projects";
+import Work from "./pages/Work";
 import Photos from "./pages/Photos";
 import PostDetail from "./pages/PostDetail";
 import "./styles/global.css";
@@ -19,8 +18,7 @@ export const sections = [
   { id: "home",       path: "/",           label: "Home",       component: Home },
   { id: "about",      path: "/about",      label: "About",      component: About },
   { id: "experience", path: "/experience", label: "Experience", component: Experience },
-  { id: "research",   path: "/research",   label: "Research",   component: Research },
-  { id: "projects",   path: "/projects",   label: "Projects",   component: Projects },
+  { id: "work",        path: "/work",        label: "Work",        component: Work },
   { id: "lens",        path: "/lens",        label: "Lens",        component: Photos },
 ];
 
@@ -59,6 +57,9 @@ function AppInner() {
             <Route path="/projects/:slug"   element={<div className="sectionPage"><PostDetail type="projects"   /></div>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <footer className="siteFooter">
+            © {new Date().getFullYear()} Prabhu Pugalenthi · HUMANS Lab @ USC
+          </footer>
         </div>
       </div>
     </>

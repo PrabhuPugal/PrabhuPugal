@@ -5,7 +5,7 @@ import styles from "./ChatBubble.module.css";
 // Keyword fallback used when API is unavailable (local dev without vercel dev)
 const pbReplies = [
   { keys: ["research", "cogrouter", "cog", "cogspan", "neurips", "paper"],
-    reply: "pb is working on CogSpan at the HUMANS Lab — extending CogRouter to route LLM reasoning across agentic and mathematical tasks using cognitive science principles." },
+    reply: "pb is working on CogSpan at the HUMANS Lab, extending CogRouter to route LLM reasoning across agentic and mathematical tasks using cognitive science principles." },
   { keys: ["hire", "job", "intern", "opportunity", "work", "recruit"],
     reply: "pb is currently a Graduate Researcher at USC and open to opportunities from Summer 2027. Feel free to reach out via LinkedIn or email." },
   { keys: ["usc", "trojan", "la", "los angeles", "california"],
@@ -15,22 +15,22 @@ const pbReplies = [
   { keys: ["travel", "food", "eat", "trip", "place"],
     reply: "pb enjoys exploring new places and trying new food. Check out the Photos section for shots taken along the way." },
   { keys: ["sleep", "tired", "rest", "nap", "bed"],
-    reply: "pb keeps late hours in the lab — occupational hazard of running experiments that always need one more epoch." },
+    reply: "pb keeps late hours in the lab, occupational hazard of running experiments that always need one more epoch." },
   { keys: ["loss", "train", "gradient", "epoch", "overfit", "converge"],
-    reply: "pb works on LLM training, fine-tuning with QLoRA/SFT, and evaluation — so yes, loss curves are a daily concern." },
+    reply: "pb works on LLM training, fine-tuning with QLoRA/SFT, and evaluation. Loss curves are a daily concern." },
   { keys: ["gpu", "cuda", "vram", "memory", "oom"],
-    reply: "pb runs experiments on HPC clusters using Slurm and Apptainer — large-scale GPU compute is part of the workflow." },
+    reply: "pb runs experiments on HPC clusters using Slurm and Apptainer. Large-scale GPU compute is part of the workflow." },
   { keys: ["hello", "hi", "hey", "sup", "yo"],
-    reply: "i'm pb-mini — ask me anything about pb!" },
+    reply: "i'm pb-mini, ask me anything about pb!" },
   { keys: ["name", "who", "you", "pb", "prabhu"],
-    reply: "pb is Prabhu Pugalenthi — MS CS student at USC and Graduate Researcher at the HUMANS Lab, working on LLM reasoning and cognitive AI systems." },
+    reply: "pb is Prabhu Pugalenthi, MS CS student at USC and Graduate Researcher at the HUMANS Lab, working on LLM reasoning and cognitive AI systems." },
   { keys: ["phd", "masters", "degree", "grad", "school"],
     reply: "pb holds a 5-year integrated MS in Software Systems from CIT, India, and is currently pursuing an MS in Computer Science at USC." },
   { keys: ["hobby", "fun", "free", "outside", "weekend"],
     reply: "Outside of research, pb enjoys travelling, trying new food, competitive gaming, and story-mode games." },
 ];
 
-const defaultFallback = "I don't have a specific answer for that — try asking about pb's research, experience, education, or background.";
+const defaultFallback = "I don't have a specific answer for that. Try asking about pb's research, experience, education, or background.";
 
 function getFallbackReply(input) {
   const lower = input.toLowerCase();
@@ -63,7 +63,7 @@ export default function ChatBubble() {
   const [open, setOpen]         = useState(false);
   const [input, setInput]       = useState("");
   const [messages, setMessages] = useState([
-    { from: "pb", text: "Hey — ask me anything. I'm basically a language model at this point." }
+    { from: "pb", text: "Hey, ask me anything. I'm basically a language model at this point." }
   ]);
   const [typing, setTyping]     = useState(false);
   const [usingApi, setUsingApi] = useState(true); // flips to false on first API failure

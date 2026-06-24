@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Brain, Server, Wrench, FlaskConical, BookOpen, ExternalLink, ChevronDown, GraduationCap, MapPin, Calendar } from "lucide-react";
+import { Brain, Server, Wrench, FlaskConical, BookOpen, ChevronDown, GraduationCap, MapPin, Calendar } from "lucide-react";
 import SectionReveal from "../components/SectionReveal";
 import ScrambleText from "../components/ScrambleText";
 import { skills } from "../data/skills";
@@ -76,8 +76,8 @@ export default function About() {
                 <p>
                   Before USC, I completed a 5-year integrated Master's in Software Systems
                   at <strong>Coimbatore Institute of Technology</strong> in Tamil Nadu,
-                  India. I also interned at Ernst &amp; Young as a Data Analyst and
-                  Software Developer, where I worked on data pipelines, analytics
+                  India. I also interned at <strong>Ernst &amp; Young</strong> as a <strong>Data Analyst</strong> and
+                  <strong>Software Developer</strong>, where I worked on data pipelines, analytics
                   dashboards, backend systems, document intelligence, and ML-based
                   business analysis projects.
                 </p>
@@ -188,26 +188,6 @@ export default function About() {
 
         </div>
 
-        {/* Papers — two cards side by side */}
-        <SectionReveal delay={0.1}>
-          <div className={styles.papersSection}>
-            <h3 className={styles.zoneHeading}>
-              <BookOpen size={13} /> Papers I'd Recommend
-            </h3>
-            <div className={styles.papersGrid}>
-              <a href="https://openreview.net/forum?id=a7Z2yN6eb2" target="_blank" rel="noopener noreferrer" className={styles.paperCard}>
-                <span className={styles.readingType}>authored</span>
-                <p className={styles.readingName}>Beyond the Mean: Three-Axis Fidelity for Aligning LLM-Based Survey Simulators</p>
-                <span className={styles.readingMeta}>Pugalenthi et al. · OpenReview <ExternalLink size={10} /></span>
-              </a>
-              <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer" className={styles.paperCard}>
-                <span className={styles.readingType}>paper</span>
-                <p className={styles.readingName}>Attention Is All You Need</p>
-                <span className={styles.readingMeta}>Vaswani et al., 2017 <ExternalLink size={10} /></span>
-              </a>
-            </div>
-          </div>
-        </SectionReveal>
 
       </div>
     </section>
