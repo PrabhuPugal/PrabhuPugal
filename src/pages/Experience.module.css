@@ -76,11 +76,16 @@
 }
 
 .entryMeta {
-  font-family: var(--font-mono);
-  font-size: 0.63rem;
-  color: var(--text-faint);
-  opacity: 0.75;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted);
   margin-bottom: 0.75rem;
+}
+
+.keyword {
+  color: var(--text);
+  font-weight: 600;
 }
 
 .bullets {

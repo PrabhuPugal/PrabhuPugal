@@ -6,6 +6,43 @@ import { researchProjects } from "../data/research";
 import { projects } from "../data/projects";
 import styles from "./Work.module.css";
 
+const KEYWORDS = [
+  // Research frameworks and methods (longer terms first to avoid partial matches)
+  "Cognitive Load Theory", "DeepSpeed ZeRO-3", "token ledger", "cognitive routing",
+  "Self-Consistency-8", "CogRouter", "CogSpan", "ACT-R", "CoPO", "CoSFT", "GRPO", "FSDP",
+  // Benchmarks
+  "AssistantBench", "WebArena", "MATH500", "AIME24", "GSM8K", "AIME", "GAIA",
+  // Models / libraries
+  "LoRA+MLP", "Qwen3-8B", "Qwen2.5", "vLLM", "LoRA",
+  // Stats / metrics
+  "Lin's CCC", "Wasserstein", "CRPS", "RMSE", "CSDI", "ECE", "FID", "MAE",
+  // Project: DRILL
+  "CatBoost", "XGBoost",
+  // Project: IoT
+  "CNN", "GPS",
+  // Venues
+  "NeurIPS 2027", "ICLR 2027",
+];
+
+const _kwLower = KEYWORDS.map((k) => k.toLowerCase());
+const _kwPattern = new RegExp(
+  `(?<![a-zA-Z])(${KEYWORDS.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})(?![a-zA-Z])`,
+  "gi"
+);
+
+function highlightKeywords(text) {
+  return text.split(_kwPattern).map((part, i) =>
+    _kwLower.includes(part.toLowerCase())
+      ? <span key={i} className={styles.keyword}>{part}</span>
+      : part
+  );
+}
+
+const allWork = [
+  ...researchProjects.map((p) => ({ ...p, type: "research" })),
+  ...projects.map((p) => ({ ...p, type: "project" })),
+];
+
 export default function Work() {
   const navigate = useNavigate();
   return (
@@ -17,21 +54,12 @@ export default function Work() {
           </div>
         </SectionReveal>
 
-        {/* ── Research ──────────────────────────────────────── */}
-        <SectionReveal>
-          <div className={styles.zoneHeader}>
-            <span className={styles.zoneTitle}>Research</span>
-            <span className={styles.zoneSub}>active &amp; peer-reviewed</span>
-          </div>
-        </SectionReveal>
-
         <div className={styles.list}>
-          {researchProjects.map((proj, i) => (
-            <SectionReveal key={proj.id} delay={i * 0.07}>
-              <div className={styles.entry}>
+          {allWork.map((proj, i) => (
+            <SectionReveal key={`${proj.type}-${proj.id}`} delay={i * 0.07}>
+              <div className={styles.entry} style={{ borderLeft: `3px solid ${proj.color}`, paddingLeft: "1rem" }}>
                 <div className={styles.entryHead}>
                   <span className={styles.title}>{proj.title}</span>
-                  {proj.published && <span className={styles.publishedBadge}>published</span>}
                   <span className={styles.period}>{proj.period}</span>
                 </div>
                 {proj.supervisor && (
@@ -40,40 +68,13 @@ export default function Work() {
                 <div className={styles.entryTags}>{proj.tags.join(" · ")}</div>
                 <ul className={styles.bullets}>
                   {proj.highlights.map((h, j) => (
-                    <li key={j} className={styles.bullet}>{h}</li>
+                    <li key={j} className={styles.bullet}>{highlightKeywords(h)}</li>
                   ))}
                 </ul>
-                <button className={styles.readMore} onClick={() => navigate(`/research/${proj.slug}`)}>
-                  Read more <ArrowRight size={12} />
-                </button>
-              </div>
-            </SectionReveal>
-          ))}
-        </div>
-
-        {/* ── Projects ──────────────────────────────────────── */}
-        <SectionReveal>
-          <div className={`${styles.zoneHeader} ${styles.zoneHeaderSpaced}`}>
-            <span className={styles.zoneTitle}>Projects</span>
-            <span className={styles.zoneSub}>engineering &amp; applied</span>
-          </div>
-        </SectionReveal>
-
-        <div className={styles.list}>
-          {projects.map((proj, i) => (
-            <SectionReveal key={proj.id} delay={i * 0.07}>
-              <div className={styles.entry}>
-                <div className={styles.entryHead}>
-                  <span className={styles.title}>{proj.title}</span>
-                  <span className={styles.period}>{proj.period}</span>
-                </div>
-                <div className={styles.entryTags}>{proj.tags.join(" · ")}</div>
-                <ul className={styles.bullets}>
-                  {proj.highlights.map((h, j) => (
-                    <li key={j} className={styles.bullet}>{h}</li>
-                  ))}
-                </ul>
-                <button className={styles.readMore} onClick={() => navigate(`/projects/${proj.slug}`)}>
+                <button
+                  className={styles.readMore}
+                  onClick={() => navigate(`/${proj.type === "research" ? "research" : "projects"}/${proj.slug}`)}
+                >
                   Read more <ArrowRight size={12} />
                 </button>
               </div>

@@ -76,8 +76,7 @@ export default function About() {
                 <p>
                   Before USC, I completed a 5-year integrated Master's in Software Systems
                   at <strong>Coimbatore Institute of Technology</strong> in Tamil Nadu,
-                  India. I also interned at <strong>Ernst &amp; Young</strong> as a <strong>Data Analyst</strong> and
-                  <strong>Software Developer</strong>, where I worked on data pipelines, analytics
+                  India. I also interned at <strong>Ernst &amp; Young</strong> as a <strong>Data Analyst</strong> and <strong>Software Developer</strong>, where I worked on data pipelines, analytics
                   dashboards, backend systems, document intelligence, and ML-based
                   business analysis projects.
                 </p>

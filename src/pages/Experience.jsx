@@ -3,6 +3,29 @@ import ScrambleText from "../components/ScrambleText";
 import { experiences } from "../data/experience";
 import styles from "./Experience.module.css";
 
+const KEYWORDS = [
+  "CogRouter", "ACT-R", "token ledger", "GRPO", "MATH500", "AIME24", "GSM8K",
+  "WebArena", "GAIA", "AssistantBench", "cognitive routing", "cognitive depth",
+  "Python", "Power BI", "sentiment analysis", "ML models", "feature extraction",
+  "stock price prediction", "sentiment embeddings",
+  "computer vision", "OCR", "AI chatbot", "REST APIs", "Docker", "CI/CD",
+  "document intelligence", "document parsing",
+];
+
+const _kwLower = KEYWORDS.map((k) => k.toLowerCase());
+const _kwPattern = new RegExp(
+  `(?<![a-zA-Z])(${KEYWORDS.map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})(?![a-zA-Z])`,
+  "gi"
+);
+
+function highlightKeywords(text) {
+  return text.split(_kwPattern).map((part, i) =>
+    _kwLower.includes(part.toLowerCase())
+      ? <span key={i} className={styles.keyword}>{part}</span>
+      : part
+  );
+}
+
 export default function Experience() {
   return (
     <section className="section">
@@ -39,7 +62,7 @@ export default function Experience() {
                   <div className={styles.entryMeta}>{exp.company} · {exp.location}</div>
                   <ul className={styles.bullets}>
                     {exp.bullets.map((b, j) => (
-                      <li key={j} className={styles.bullet}>{b}</li>
+                      <li key={j} className={styles.bullet}>{highlightKeywords(b)}</li>
                     ))}
                   </ul>
                 </div>
