@@ -268,18 +268,9 @@ export default function Home({ onSelectSection }) {
               <button
                 type="button"
                 className={styles.btnPrimary}
-                onClick={() => onSelectSection("research")}
+                onClick={() => onSelectSection("work")}
               >
-                View Research <ArrowRight size={16} />
-              </button>
-            </MagneticWrap>
-            <MagneticWrap>
-              <button
-                type="button"
-                className={styles.btnSecondary}
-                onClick={() => onSelectSection("projects")}
-              >
-                See Projects <ArrowRight size={16} />
+                See Work <ArrowRight size={16} />
               </button>
             </MagneticWrap>
             <MagneticWrap>

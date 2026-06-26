@@ -12,6 +12,7 @@ import Experience from "./pages/Experience";
 import Work from "./pages/Work";
 import Photos from "./pages/Photos";
 import PostDetail from "./pages/PostDetail";
+import PaperViewer from "./pages/PaperViewer";
 import "./styles/global.css";
 
 export const sections = [
@@ -55,6 +56,7 @@ function AppInner() {
             <Route path="/experience/:slug" element={<div className="sectionPage"><PostDetail type="experience" /></div>} />
             <Route path="/research/:slug"   element={<div className="sectionPage"><PostDetail type="research"   /></div>} />
             <Route path="/projects/:slug"   element={<div className="sectionPage"><PostDetail type="projects"   /></div>} />
+            <Route path="/paper/:slug"      element={<PaperViewer />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <footer className="siteFooter">

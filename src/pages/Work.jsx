@@ -7,21 +7,22 @@ import { projects } from "../data/projects";
 import styles from "./Work.module.css";
 
 const KEYWORDS = [
-  // Research frameworks and methods (longer terms first to avoid partial matches)
-  "Cognitive Load Theory", "DeepSpeed ZeRO-3", "token ledger", "cognitive routing",
-  "Self-Consistency-8", "CogRouter", "CogSpan", "ACT-R", "CoPO", "CoSFT", "GRPO", "FSDP",
-  // Benchmarks
-  "AssistantBench", "WebArena", "MATH500", "AIME24", "GSM8K", "AIME", "GAIA",
-  // Models / libraries
-  "LoRA+MLP", "Qwen3-8B", "Qwen2.5", "vLLM", "LoRA",
-  // Stats / metrics
-  "Lin's CCC", "Wasserstein", "CRPS", "RMSE", "CSDI", "ECE", "FID", "MAE",
-  // Project: DRILL
-  "CatBoost", "XGBoost",
-  // Project: IoT
-  "CNN", "GPS",
-  // Venues
-  "NeurIPS 2027", "ICLR 2027",
+  // Compound phrases first (prevent partial matches)
+  "automatic emergency dispatch", "full trajectory distribution", "zero environment errors",
+  "shared token budget", "budget-aware behavior", "circadian conditioning",
+  "personalized diffusion", "real-time drowsiness", "three-axis fidelity",
+  "14% individual variance", "91.97% accuracy", "irreversible actions",
+  "verification layer", "cognitive routing", "reasoning depth",
+  "fidelity collapse", "classification head", "Wasserstein distance",
+  "equipment value", "broadcast overlay", "alcohol interlock",
+  "ignition gate", "sensor fusion", "GPS coordinates",
+  "seven-map pool", "decoupled vLLM", "3x fewer tokens",
+  "token ledger", "tick-by-tick", "freeze-frame",
+  "45 participants", "14B scale", "8 A100s",
+  "Self-Consistency-8", "postprandial", "0.0099",
+  // Single terms
+  "GRPO", "LoRA+MLP", "Lin's CCC",
+  "CRPS", "RMSE", "CSDI", "ECE", "FID", "MAE", "CatBoost",
 ];
 
 const _kwLower = KEYWORDS.map((k) => k.toLowerCase());

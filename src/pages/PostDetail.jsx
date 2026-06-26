@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Calendar, MapPin, Clock, ExternalLink, Image } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, Clock, ExternalLink, FileText } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { GithubIcon } from "../components/SocialIcons";
@@ -106,7 +106,7 @@ function BodyBlock({ block }) {
   }
   if (block.type === "image" && block.src) {
     return (
-      <figure className={styles.bodyFigure}>
+      <figure className={styles.bodyFigure} style={block.maxWidth ? { maxWidth: block.maxWidth, margin: "1.5rem auto" } : undefined}>
         <img src={block.src} alt={block.caption || ""} className={styles.bodyImg} />
         {block.caption && <figcaption className={styles.bodyCaption}>{block.caption}</figcaption>}
       </figure>
@@ -234,7 +234,7 @@ export default function PostDetail({ type }) {
         )}
 
         {/* Image gallery */}
-        {entry.images && entry.images.length > 0 ? (
+        {entry.images && entry.images.length > 0 && (
           <div className={styles.section}>
             <h2 className={styles.sectionHeading}>Gallery</h2>
             <div className={`${styles.imageGrid} ${entry.images.length === 1 ? styles.imageGridSingle : ""}`}>
@@ -246,16 +246,16 @@ export default function PostDetail({ type }) {
               ))}
             </div>
           </div>
-        ) : (
-          <div className={styles.emptyGallery}>
-            <Image size={18} className={styles.emptyIcon} />
-            <p>Add images by putting photos in <code>public/work/</code> and updating the <code>images</code> array in the data file.</p>
-          </div>
         )}
 
         {/* Links */}
-        {(entry.github || entry.live) && (
+        {(entry.github || entry.live || entry.paper) && (
           <div className={styles.links}>
+            {entry.paper && (
+              <a href={`/paper/${entry.slug}`} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
+                <FileText size={14} /> Read Paper
+              </a>
+            )}
             {entry.github && (
               <a href={entry.github} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
                 <GithubIcon size={14} /> Code

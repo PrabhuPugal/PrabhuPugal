@@ -285,13 +285,9 @@
 
 .galleryImg {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   display: block;
-}
-
-.imageGridSingle .galleryImg {
-  height: 340px;
 }
 
 .caption {
@@ -416,7 +412,6 @@
 @media (max-width: 768px) {
   .page { padding: 2rem 1.25rem 3rem; }
   .imageGrid { grid-template-columns: 1fr; }
-  .galleryImg { height: 200px; }
 }
 
 @media (max-width: 480px) {
