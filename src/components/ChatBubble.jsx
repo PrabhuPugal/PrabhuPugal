@@ -4,38 +4,56 @@ import styles from "./ChatBubble.module.css";
 
 // Keyword fallback used when API is unavailable (local dev without vercel dev)
 const pbReplies = [
-  { keys: ["research", "cogrouter", "cog", "cogspan", "neurips", "paper"],
-    reply: "pb is working on CogSpan at the HUMANS Lab, extending CogRouter to route LLM reasoning across agentic and mathematical tasks using cognitive science principles." },
-  { keys: ["hire", "job", "intern", "opportunity", "work", "recruit"],
-    reply: "pb is currently a Graduate Researcher at USC and open to opportunities from Summer 2027. Feel free to reach out via LinkedIn or email." },
-  { keys: ["usc", "trojan", "la", "los angeles", "california"],
-    reply: "pb is an MS Computer Science student at the University of Southern California in Los Angeles, graduating May 2027." },
-  { keys: ["llm", "gpt", "claude", "ai", "model", "transformer", "bert"],
-    reply: "pb's research focuses on LLM reasoning, cognitive routing, behavioral analysis of language models, and AI safety benchmarking." },
-  { keys: ["travel", "food", "eat", "trip", "place"],
-    reply: "pb enjoys exploring new places and trying new food. Check out the Photos section for shots taken along the way." },
-  { keys: ["sleep", "tired", "rest", "nap", "bed"],
-    reply: "pb keeps late hours in the lab, occupational hazard of running experiments that always need one more epoch." },
-  { keys: ["loss", "train", "gradient", "epoch", "overfit", "converge"],
-    reply: "pb works on LLM training, fine-tuning with QLoRA/SFT, and evaluation. Loss curves are a daily concern." },
-  { keys: ["gpu", "cuda", "vram", "memory", "oom"],
-    reply: "pb runs experiments on HPC clusters using Slurm and Apptainer. Large-scale GPU compute is part of the workflow." },
-  { keys: ["hello", "hi", "hey", "sup", "yo"],
-    reply: "i'm pb-mini, ask me anything about pb!" },
-  { keys: ["name", "who", "you", "pb", "prabhu"],
-    reply: "pb is Prabhu Pugalenthi, MS CS student at USC and Graduate Researcher at the HUMANS Lab, working on LLM reasoning and cognitive AI systems." },
-  { keys: ["phd", "masters", "degree", "grad", "school"],
-    reply: "pb holds a 5-year integrated MS in Software Systems from CIT, India, and is currently pursuing an MS in Computer Science at USC." },
-  { keys: ["hobby", "fun", "free", "outside", "weekend"],
-    reply: "Outside of research, pb enjoys travelling, trying new food, competitive gaming, and story-mode games." },
+  { keys: ["cogspan", "cogrouter", "cognitive routing", "cog router", "adaptive compute", "token ledger"],
+    reply: "CogSpan teaches LLMs to route reasoning depth per step rather than thinking equally hard at everything. It defines four levels (L1–L4) inspired by ACT-R, uses a CLT estimator to pick the right level per step, and builds a token ledger to cap depth when budget runs low. Matched Self-Consistency-8 at 3x fewer tokens." },
+  { keys: ["reasoning", "reasoningenv", "reasoning env", "token budget", "shared budget", "grpo"],
+    reply: "ReasoningEconomicsEnv is an RL environment where the model answers 10 questions sharing one token budget. Overspend on an easy question and you fail the hard one later. Budget-aware behaviour only emerged at 14B scale (Qwen3-14B). Trained with GRPO on 8 A100s." },
+  { keys: ["beyond the mean", "survey", "simulation", "fidelity", "covid", "misinformation", "lora", "icml"],
+    reply: "Beyond the Mean tests whether an LLM can simulate 1,466 survey respondents from just 74 real responses on a COVID-19 misinformation dataset. Published at ICML 2026. LoRA+MLP with a classification head won on all three fidelity axes, but the best model still only explained 14% of individual variance." },
+  { keys: ["drill", "cs2", "csgo", "counter-strike", "round", "freeze-frame", "catboost", "ece"],
+    reply: "DRILL predicts who wins a CS2 round from a single freeze-frame before any action is taken. Parsed raw demo files tick-by-tick across 7 maps. CatBoost achieved ECE 0.0099 vs XGBoost 0.0108 — the calibration gap is what matters for a live broadcast overlay." },
+  { keys: ["blood glucose", "forecasting", "glucose", "postprandial", "csdi", "diffusion", "cgm"],
+    reply: "The blood glucose project extends CSDI with circadian conditioning and multimodal inputs (heart rate, carbs, step count) to forecast full trajectory distributions per person. Built personalized models for 45 participants. RMSE 10.81, MAE 9.02, FID 5.67, CRPS 6.45 — beat every baseline." },
+  { keys: ["iot", "accident", "drowsiness", "alcohol", "crash", "gps", "cnn", "arduino", "road safety"],
+    reply: "The IoT project is a multi-sensor in-vehicle system detecting drunk driving, drowsiness, and crashes without any driver input. The ignition gate uses alcohol interlock — fail the breath test, car doesn't start. CNN hit 91.97% drowsiness accuracy. On crash, GPS coordinates are sent automatically to hospitals and emergency contacts. Won 1st prize at the IoT Expo." },
+  { keys: ["ey", "ernst", "young", "intern", "contract miner", "sentiment", "experience"],
+    reply: "pb interned at Ernst & Young in Chennai as a Data Analyst. Built Contract Miner — an in-house chatbot that ingests scanned lease agreements and answers auditor questions. EY valued it at $30 million and is rolling it out company-wide. The work was showcased to the Global Vice Chair and recognised up to the Director of EMEA." },
+  { keys: ["hire", "job", "opportunity", "recruit", "available"],
+    reply: "pb is open to opportunities from Summer 2027. Best way to reach him is LinkedIn or email — links are on the home page." },
+  { keys: ["usc", "trojan", "university", "los angeles", "la", "california", "school", "degree", "masters", "grad"],
+    reply: "pb is an MS Computer Science student at USC, graduating May 2027. He also holds an integrated MS in Software Systems from CIT India — so USC is technically his second master's, and yes he brings it up." },
+  { keys: ["hello", "hi", "hey", "sup", "yo", "what can"],
+    reply: "i'm pb-mini. ask me about pb's research, projects, experience, or background." },
+  { keys: ["who", "name", "pb", "prabhu", "about"],
+    reply: "pb is Prabhu Pugalenthi — MS CS student at USC, Graduate Researcher at the HUMANS Lab, working on LLM reasoning efficiency and cognitive routing. From Coimbatore, India. Currently in Downtown LA." },
+  { keys: ["travel", "food", "eat", "trip", "place", "visit", "hobby", "game", "fun"],
+    reply: "pb travels whenever he can — US trips include the Grand Canyon, Sedona, Chicago, Atlanta, Orlando, and more. He takes food very seriously and games when the experiments are running." },
+  { keys: ["gpu", "cuda", "a100", "cluster", "slurm", "training", "loss", "epoch"],
+    reply: "pb runs experiments on HPC clusters with Slurm and Apptainer. 8 A100s for the big runs. Loss curves and NCCL timeouts are a daily concern." },
 ];
 
-const defaultFallback = "I don't have a specific answer for that. Try asking about pb's research, experience, education, or background.";
+const offTopicFallbacks = [
+  "i'm fine-tuned on exactly one person's life. this question is not in that dataset. ask me about pb instead.",
+  "i would genuinely love to help, but my entire knowledge base is one human being and his projects. i'm very good at that one thing.",
+  "that's a great question for a general-purpose model. i am not that. i am very specifically pb-mini.",
+  "bold of you to think i know anything beyond pb's research and what he ate in sedona. ask me something about him.",
+  "look, it's been a long day and i'm running on what i know — which is pb, his work, and not much else. what did you want to know about him?",
+  "my training data is one guy's portfolio. this question fell right off the edge of it. try asking about cogspan or something.",
+  "i would help but i've only ever learned about one person and honestly that took up all the space. ask me about pb.",
+  "not my domain. my domain is very small and pb-shaped. what's your actual question about him?",
+];
+let _offTopicIdx = 0;
+
+const defaultFallback = () => {
+  const msg = offTopicFallbacks[_offTopicIdx % offTopicFallbacks.length];
+  _offTopicIdx++;
+  return msg;
+};
 
 function getFallbackReply(input) {
   const lower = input.toLowerCase();
   const match = pbReplies.find(({ keys }) => keys.some(k => lower.includes(k)));
-  return match ? match.reply : defaultFallback;
+  return match ? match.reply : defaultFallback();
 }
 
 // Convert our {from, text} messages to OpenAI-style {role, content}
