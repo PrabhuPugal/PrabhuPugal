@@ -18,7 +18,7 @@ export const projects = [
     ],
     writtenDate: "Dec 2025",
     readTime: "3 min read",
-    paper: "/work/drill/DRILL.pdf",
+    paper: "/papers/drill.html",
     github: null,
     live: null,
     coverImage: null,
