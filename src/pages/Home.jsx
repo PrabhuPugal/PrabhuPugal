@@ -276,11 +276,12 @@ export default function Home({ onSelectSection }) {
             <MagneticWrap>
               <a
                 href="/resume.pdf"
-                download
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.btnResume}
-                data-tooltip="Download my latest resume as a PDF"
+                data-tooltip="View my resume"
               >
-                Resume ↓
+                View Resume
               </a>
             </MagneticWrap>
           </div>
