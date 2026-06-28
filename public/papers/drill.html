@@ -8,6 +8,16 @@
     html, body { width: 100%; height: 100%; overflow: hidden; }
     iframe { width: 100%; height: 100%; border: none; display: block; }
   </style>
+  <script>
+    const TITLE = "Demo-Based Round-Win Inference for Localized Learning";
+    document.title = TITLE;
+    const observer = new MutationObserver(() => {
+      if (document.title !== TITLE) document.title = TITLE;
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+      observer.observe(document.querySelector("title"), { childList: true, subtree: true, characterData: true });
+    });
+  </script>
 </head>
 <body>
   <iframe src="/work/drill/DRILL.pdf" title="Demo-Based Round-Win Inference for Localized Learning"></iframe>
