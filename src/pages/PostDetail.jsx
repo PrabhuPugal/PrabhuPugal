@@ -252,7 +252,7 @@ export default function PostDetail({ type }) {
         {(entry.github || entry.live || entry.paper) && (
           <div className={styles.links}>
             {entry.paper && (
-              <a href={`/paper/${entry.slug}`} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
+              <a href={entry.paper} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>
                 <FileText size={14} /> Read Paper
               </a>
             )}
