@@ -29,9 +29,8 @@ export default function PaperViewer() {
 
   return (
     <div className={styles.viewer}>
-      <embed
+      <iframe
         src={entry.paper}
-        type="application/pdf"
         className={styles.frame}
         title={entry.title}
       />
