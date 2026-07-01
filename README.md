@@ -54,27 +54,11 @@
 
 ## stack
 
-**LLM / ML**
+<div align="center">
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![HuggingFace](https://img.shields.io/badge/HuggingFace-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
-![vLLM](https://img.shields.io/badge/vLLM-1E1E1E?style=flat-square&logoColor=white)
-![DeepSpeed](https://img.shields.io/badge/DeepSpeed-0078D4?style=flat-square&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
+<img src="https://skillicons.dev/icons?i=python,pytorch,sklearn,bash,linux,docker,git,react,ts,nodejs,vite&theme=dark&perline=11" />
 
-**infra**
-
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
-![Slurm](https://img.shields.io/badge/Slurm-HPC-2C5F8A?style=flat-square)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
-
-**web**
-
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+</div>
 
 <br/>
 
@@ -82,9 +66,7 @@
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=PrabhuPugal&show_icons=true&hide_border=true&bg_color=1E1E1E&text_color=C4C2BE&icon_color=C084FC&title_color=F0EEEA&ring_color=C084FC&hide=contribs" />
-&nbsp;
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=PrabhuPugal&layout=compact&hide_border=true&bg_color=1E1E1E&text_color=C4C2BE&title_color=F0EEEA&langs_count=6" />
+<img src="https://streak-stats.demolab.com?user=PrabhuPugal&theme=dark&hide_border=true&background=1E1E1E&ring=C084FC&fire=C084FC&currStreakLabel=F0EEEA&sideLabels=F0EEEA&currStreakNum=F0EEEA&sideNums=C4C2BE&dates=7A7878" />
 
 </div>
 
